@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const navigation = [
     { title: "Home", path: "/" },
-    { title: "All Habits", path: "/habits" },
+    { title: "Browse Habits", path: "/habits" },
     { title: "My Habits", path: "/my-habits" },
     { title: "Add Habits", path: "/add-habits" },
   ];
