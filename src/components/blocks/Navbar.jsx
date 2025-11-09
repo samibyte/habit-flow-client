@@ -1,8 +1,9 @@
 import { User, Menu, X, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import MenuSwitch from "../ui/MenuSwitch";
+import ThemeSwitch from "../ui/ThemeSwitch";
 
 const Navbar = () => {
   const [state, setState] = useState(false);
@@ -73,6 +74,7 @@ const Navbar = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center gap-3">
+            <ThemeSwitch />
             <Link
               to="/auth/login"
               className="btn px-4 py-3 h-auto btn-ghost text-base-content/70 hover:text-primary"
