@@ -5,12 +5,30 @@ import ThemeContext from "../../contexts/ThemeContext";
 const ThemeSwitch = () => {
   const { theme, toggleTheme } = use(ThemeContext);
 
+  if (theme === "habitflow-light") {
+    return (
+      <StyledWrapper>
+        <label htmlFor="switch" className="switch">
+          <input
+            id="switch"
+            type="checkbox"
+            checked={theme}
+            onChange={() => toggleTheme(!theme)}
+          />
+          <span className="slider" />
+          <span className="decoration" />
+        </label>
+      </StyledWrapper>
+    );
+  }
+
   return (
     <StyledWrapper>
       <label htmlFor="switch" className="switch">
         <input
           id="switch"
           type="checkbox"
+          checked={!theme}
           onChange={() => toggleTheme(!theme)}
         />
         <span className="slider" />

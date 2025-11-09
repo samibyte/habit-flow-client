@@ -127,24 +127,17 @@ const WhyBuildHabits = () => {
               >
                 <div className="card rounded-md bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 border border-base-300 h-full">
                   <div className="card-body p-8">
-                    {/* Icon with gradient background */}
                     <div
                       className={`inline-flex p-4 rounded-xl bg-linear-to-br ${benefit.gradient} mb-5 text-white transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 w-fit`}
                     >
                       <Icon className="w-12 h-12" />
                     </div>
-
-                    {/* Title */}
                     <h3 className="card-title text-2xl font-bold text-base-content mb-3 group-hover:text-primary transition-colors">
                       {benefit.title}
                     </h3>
-
-                    {/* Description */}
                     <p className="text-base-content/70 leading-relaxed text-sm">
                       {benefit.description}
                     </p>
-
-                    {/* Decorative corner accent */}
                     <div
                       className={`absolute top-0 right-0 w-20 h-20 bg-linear-to-br ${benefit.gradient} opacity-0 group-hover:opacity-10 rounded-bl-full transition-opacity duration-300`}
                     ></div>
@@ -163,7 +156,7 @@ const WhyBuildHabits = () => {
           transition={{ delay: 0.5, duration: 0.6 }}
           className="mt-16 text-center"
         >
-          <div className="card bg-linear-to-r from-base-100 to-base-300  border border-primary/20 inline-block rounded-md">
+          <div className="card bg-linear-to-r from-base-200 to-base-300  border border-primary/20 inline-block rounded-md">
             <div className="card-body p-8">
               <p className="text-lg text-base-content/80 font-medium italic max-w-2xl">
                 "We are what we repeatedly do. Excellence, then, is not an act,
