@@ -1,7 +1,6 @@
 import { Outlet } from "react-router";
-import Navbar from "../components/Navbar";
-import DisplayRealTime from "../components/displayRealTime";
-import ThemeSwitch from "../components/ui/ThemeSwitch";
+import Navbar from "../components/blocks/Navbar";
+import Footer from "../components/blocks/Footer";
 
 const RootLayout = () => {
   return (
@@ -9,10 +8,10 @@ const RootLayout = () => {
       <header>
         <Navbar />
       </header>
-      <main>
+      <main className="min-h-screen">
         <Outlet />
       </main>
-      <footer></footer>
+      <Footer />
     </div>
   );
 };
