@@ -1,19 +1,37 @@
-import { User, Menu, X, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import MenuSwitch from "../ui/MenuSwitch";
+import {
+  User,
+  Sparkles,
+  Home,
+  Plus,
+  TrendingUp,
+  Compass,
+  Settings,
+  LogOut,
+  X,
+  Menu,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import ThemeSwitch from "../ui/ThemeSwitch";
+import ProfileDropDown from "../ui/ProfileDropDown";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
+  const { user, signOutUser } = useAuth();
   const [state, setState] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const navigation = [
-    { title: "Home", path: "/" },
-    { title: "Browse Habits", path: "/habits" },
-    { title: "My Habits", path: "/my-habits" },
-    { title: "Add Habits", path: "/add-habits" },
+    { title: "Home", path: "/", icon: Home },
+    { title: "Browse Habits", path: "/habits", icon: Compass },
+    { title: "My Habits", path: "/my-habits", icon: TrendingUp },
+    { title: "Add Habit", path: "/add-habits", icon: Plus },
+  ];
+
+  const userMenu = [
+    { title: "Profile", path: "/profile", icon: User },
+    { title: "Settings", path: "/settings", icon: Settings },
   ];
 
   useEffect(() => {
@@ -24,6 +42,27 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (state) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    };
+  }, [state]);
+
+  const handleLogOut = async () => {
+    await signOutUser();
+    setState(false);
+  };
 
   return (
     <motion.nav
@@ -40,16 +79,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between py-5">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-              className="w-10 h-10 bg-linear-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-lg"
-            >
-              <Sparkles className="w-5 h-5 text-white" />
-            </motion.div>
-            <h1 className="text-2xl md:text-3xl font-bold font-heading">
+            <h1 className="text-2xl font-montserrat md:text-3xl font-bold font-heading">
               <span className="text-primary">Habit</span>
-              <span className="text-seondary">Flow</span>
+              <span className="text-secondary">Flow</span>
             </h1>
           </Link>
 
@@ -60,7 +92,7 @@ const Navbar = () => {
                 key={idx}
                 to={item.path}
                 className={({ isActive }) =>
-                  `px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  `font-montserrat px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
                     isActive
                       ? "bg-primary text-primary-content shadow-md"
                       : "text-base-content/70 hover:text-primary hover:bg-base-200"
@@ -73,87 +105,297 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center gap-3">
-            <ThemeSwitch />
-            <Link
-              to="/auth/login"
-              className="btn px-4 py-3 h-auto btn-ghost text-base-content/70 hover:text-primary"
-            >
-              Log in
-            </Link>
-            <Link
-              to="/auth/sign-up"
-              className="btn px-4 py-3 h-auto btn-primary shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              Sign Up
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-4 h-4"
+          {user ? (
+            <div className="hidden md:flex items-center gap-3">
+              <ThemeSwitch />
+              <ProfileDropDown />
+            </div>
+          ) : (
+            <div className="hidden md:flex items-center gap-3">
+              <ThemeSwitch />
+              <Link
+                to="/login"
+                className="btn px-4 py-3 font-montserrat h-auto btn-ghost text-base-content/70 hover:text-primary"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </Link>
-          </div>
+                Log in
+              </Link>
+              <Link
+                to="/sign-up"
+                className="btn px-4 py-3 font-montserrat h-auto btn-primary shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                Sign Up
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Link>
+            </div>
+          )}
 
           {/* Mobile Menu Button */}
-          <div className="menu-btn md:hidden">
-            <MenuSwitch state={state} setState={setState} />
+          <div className="flex md:hidden items-center gap-3">
+            <ThemeSwitch />
+            <button
+              onClick={() => setState(!state)}
+              className="relative z-50 p-2 rounded-xl hover:bg-base-200 transition-colors"
+              aria-label="Toggle menu"
+            >
+              <div className="w-6 h-5 flex flex-col justify-between">
+                <motion.span
+                  animate={state ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                  className="w-full h-0.5 bg-base-content rounded-full"
+                />
+                <motion.span
+                  animate={state ? { opacity: 0 } : { opacity: 1 }}
+                  className="w-full h-0.5 bg-base-content rounded-full"
+                />
+                <motion.span
+                  animate={state ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                  className="w-full h-0.5 bg-base-content rounded-full"
+                />
+              </div>
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Backdrop */}
       <AnimatePresence>
         {state && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-base-100 border-t border-base-300 overflow-hidden"
-          >
-            <div className="px-4 py-6 space-y-3">
-              {/* Mobile Navigation Links */}
-              {navigation.map((item, idx) => (
-                <NavLink
-                  key={idx}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `block px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
-                      isActive
-                        ? "bg-primary text-primary-content shadow-md"
-                        : "text-base-content/70 hover:text-primary hover:bg-base-200"
-                    }`
-                  }
-                  onClick={() => setState(false)}
-                >
-                  {item.title}
-                </NavLink>
-              ))}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed touch-none inset-0 bg-black/20 z-40 md:hidden"
+            onClick={() => setState(false)}
+          />
+        )}
+      </AnimatePresence>
 
-              {/* Mobile Auth Buttons */}
-              <div className="pt-4 border-t border-base-300 space-y-3">
-                <Link
-                  to="/auth/login"
-                  className="block px-4 py-3 text-center rounded-lg font-medium text-primary hover:bg-base-200 transition-colors"
-                  onClick={() => setState(false)}
-                >
-                  Log in
-                </Link>
-                <Link
-                  to="/auth/sign-up"
-                  className="block px-4 py-3 text-center rounded-lg font-medium bg-primary text-primary-content shadow-lg hover:shadow-xl transition-shadow"
-                  onClick={() => setState(false)}
-                >
-                  Sign Up
-                </Link>
+      {/* Mobile Menu - Logged In State */}
+      <AnimatePresence>
+        {state && user && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="md:hidden fixed top-0 right-0 bottom-0 w-80 z-50 bg-base-100 shadow-2xl border-l border-base-300/50"
+            style={{
+              // Force solid background and prevent any transparency issues
+              backgroundColor: "var(--color-base-100)",
+              backgroundImage: "none",
+            }}
+          >
+            {/* Header with Close Button */}
+            <div className="flex items-center justify-between p-6 border-b border-base-300/50">
+              <div className="flex items-center gap-3">
+                <Menu />
+                <span className="font-bold text-lg">Menu</span>
               </div>
+              <button
+                onClick={() => setState(false)}
+                className="p-2 hover:bg-base-200 rounded-xl transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* User Profile */}
+            <div className="p-6 border-b border-base-300/50">
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <img
+                    src={user.photoURL || "/default-avatar.png"}
+                    alt={user.displayName || "User"}
+                    className="w-12 h-12 rounded-xl border-2 border-primary/20 object-cover"
+                  />
+                  <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-base-100"></div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-base-content truncate">
+                    {user.displayName || "User"}
+                  </h3>
+                  <p className="text-sm text-base-content/60 truncate">
+                    {user.email}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="p-6 border-b border-base-300/50">
+              <div className="grid grid-cols-3 gap-3">
+                <div className="text-center">
+                  <div className="text-xl font-bold text-primary">12</div>
+                  <div className="text-xs text-base-content/60">Habits</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-secondary">45</div>
+                  <div className="text-xs text-base-content/60">Streak</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-bold text-accent">85%</div>
+                  <div className="text-xs text-base-content/60">Progress</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation */}
+            <div className="p-4 space-y-2">
+              {navigation.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <NavLink
+                    key={idx}
+                    to={item.path}
+                    onClick={() => setState(false)}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group ${
+                        isActive
+                          ? "bg-primary text-primary-content shadow-lg"
+                          : "text-base-content/70 hover:bg-base-200 hover:text-base-content"
+                      }`
+                    }
+                  >
+                    <div
+                      className={({ isActive }) =>
+                        `p-2 rounded-lg transition-colors ${
+                          isActive
+                            ? "bg-primary-content/20"
+                            : "bg-base-200 group-hover:bg-base-300"
+                        }`
+                      }
+                    >
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium">{item.title}</span>
+                  </NavLink>
+                );
+              })}
+            </div>
+
+            {/* User Menu */}
+            <div className="p-4 border-t border-base-300/50 space-y-2">
+              {userMenu.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={idx}
+                    to={item.path}
+                    onClick={() => setState(false)}
+                    className="flex items-center gap-3 p-3 rounded-xl text-base-content/70 hover:bg-base-200 hover:text-base-content transition-all duration-200 group"
+                  >
+                    <div className="p-2 rounded-lg bg-base-200 group-hover:bg-base-300 transition-colors">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium">{item.title}</span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Log Out Button */}
+            <div className="p-4 border-t border-base-300/50 mt-auto">
+              <button
+                onClick={handleLogOut}
+                className="w-full flex items-center gap-3 p-3 rounded-xl text-error hover:bg-error/10 transition-all duration-200 group"
+              >
+                <div className="p-2 rounded-lg bg-error/10 group-hover:bg-error/20 transition-colors">
+                  <LogOut className="w-4 h-4" />
+                </div>
+                <span className="font-medium">Sign Out</span>
+              </button>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Mobile Menu - Logged Out State */}
+        {state && !user && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="md:hidden fixed top-0 right-0 bottom-0 w-80 z-50 bg-base-100 shadow-2xl border-l border-base-300/50"
+            style={{
+              // Force solid background and prevent any transparency issues
+              backgroundColor: "var(--color-base-100)",
+              backgroundImage: "none",
+            }}
+          >
+            {/* Header with Close Button */}
+            <div className="flex items-center justify-between p-6 border-b border-base-300/50">
+              <div className="flex items-center gap-3">
+                <Menu />
+                <span className="font-bold text-lg">Menu</span>
+              </div>
+              <button
+                onClick={() => setState(false)}
+                className="p-2 hover:bg-base-200 rounded-xl transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Navigation */}
+            <div className="p-4 space-y-2">
+              {navigation.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <NavLink
+                    key={idx}
+                    to={item.path}
+                    onClick={() => setState(false)}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group ${
+                        isActive
+                          ? "bg-primary text-primary-content shadow-lg"
+                          : "text-base-content/70 hover:bg-base-200 hover:text-base-content"
+                      }`
+                    }
+                  >
+                    <div
+                      className={({ isActive }) =>
+                        `p-2 rounded-lg transition-colors ${
+                          isActive
+                            ? "bg-primary-content/20"
+                            : "bg-base-200 group-hover:bg-base-300"
+                        }`
+                      }
+                    >
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium">{item.title}</span>
+                  </NavLink>
+                );
+              })}
+            </div>
+
+            {/* Auth Buttons */}
+            <div className="p-4 border-t border-base-300/50 mt-auto space-y-3">
+              <Link
+                to="/login"
+                onClick={() => setState(false)}
+                className="w-full block py-3 text-center rounded-xl font-medium text-primary border border-primary hover:bg-primary hover:text-primary-content transition-all duration-200"
+              >
+                Log in
+              </Link>
+              <Link
+                to="/sign-up"
+                onClick={() => setState(false)}
+                className="w-full block py-3 text-center rounded-xl font-medium bg-primary text-primary-content shadow-lg hover:shadow-xl transition-all duration-200"
+              >
+                Sign Up
+              </Link>
             </div>
           </motion.div>
         )}
