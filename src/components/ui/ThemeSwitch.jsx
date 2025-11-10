@@ -1,26 +1,16 @@
-import React, { use } from "react";
+import React from "react";
 import styled from "styled-components";
 import ThemeContext from "../../contexts/theme/ThemeContext";
 
-const ThemeSwitch = () => {
-  const { theme, toggleTheme } = use(ThemeContext);
+const ThemeSwitch = ({ onToggle }) => {
+  const { theme, toggleTheme } = React.useContext(ThemeContext);
 
-  if (theme === "habitflow-light") {
-    return (
-      <StyledWrapper>
-        <label htmlFor="switch" className="switch">
-          <input
-            id="switch"
-            type="checkbox"
-            checked={theme}
-            onChange={() => toggleTheme(!theme)}
-          />
-          <span className="slider" />
-          <span className="decoration" />
-        </label>
-      </StyledWrapper>
-    );
-  }
+  const handleToggle = () => {
+    toggleTheme(!theme);
+    if (onToggle) onToggle();
+  };
+
+  const isLightTheme = theme === "habitflow-light";
 
   return (
     <StyledWrapper>
@@ -28,8 +18,8 @@ const ThemeSwitch = () => {
         <input
           id="switch"
           type="checkbox"
-          checked={!theme}
-          onChange={() => toggleTheme(!theme)}
+          checked={isLightTheme}
+          onChange={handleToggle}
         />
         <span className="slider" />
         <span className="decoration" />
@@ -41,11 +31,11 @@ const ThemeSwitch = () => {
 const StyledWrapper = styled.div`
   /* The switch - the box around the slider */
   .switch {
-    font-size: 17px;
+    font-size: 14px;
     position: relative;
     display: inline-block;
-    width: 3.5em;
-    height: 2em;
+    width: 2.8em;
+    height: 1.6em;
     cursor: pointer;
   }
 
@@ -73,14 +63,14 @@ const StyledWrapper = styled.div`
   .slider:before {
     position: absolute;
     content: "";
-    height: 1.4em;
-    width: 1.4em;
+    height: 1.1em;
+    width: 1.1em;
     border-radius: 50%;
     left: 10%;
     bottom: 15%;
     box-shadow:
-      inset 8px -4px 0px 0px #ececd9,
-      -4px 1px 4px 0px #dadada;
+      inset 6px -3px 0px 0px #ececd9,
+      -3px 1px 3px 0px #dadada;
     background: var(--background);
     transition: 0.5s;
   }
@@ -88,8 +78,8 @@ const StyledWrapper = styled.div`
   .decoration {
     position: absolute;
     content: "";
-    height: 2px;
-    width: 2px;
+    height: 1.5px;
+    width: 1.5px;
     border-radius: 50%;
     right: 20%;
     top: 15%;
@@ -97,25 +87,25 @@ const StyledWrapper = styled.div`
     backdrop-filter: blur(10px);
     transition: all 0.5s;
     box-shadow:
-      -7px 10px 0 #e5f041e6,
-      8px 15px 0 #e5f041e6,
-      -17px 1px 0 #e5f041e6,
-      -20px 10px 0 #e5f041e6,
-      -7px 23px 0 #e5f041e6,
-      -15px 25px 0 #e5f041e6;
+      -5px 8px 0 #e5f041e6,
+      6px 12px 0 #e5f041e6,
+      -13px 1px 0 #e5f041e6,
+      -16px 8px 0 #e5f041e6,
+      -5px 18px 0 #e5f041e6,
+      -12px 20px 0 #e5f041e6;
   }
 
   input:checked ~ .decoration {
-    transform: translateX(-20px);
-    width: 10px;
-    height: 10px;
+    transform: translateX(-16px);
+    width: 5px;
+    height: 5px;
     background: white;
     box-shadow:
-      -12px 0 0 white,
-      -6px 0 0 1.6px white,
-      5px 15px 0 1px white,
-      1px 17px 0 white,
-      10px 17px 0 white;
+      -8px 0 0 white,
+      /* Reduced from -10px */ -4px 0 0 1px white,
+      /* Reduced values */ 3px 10px 0 0.6px white,
+      /* Reduced values */ 1px 12px 0 white,
+      /* Reduced values */ 6px 12px 0 white; /* Reduced values */
   }
 
   input:checked + .slider {
@@ -125,8 +115,8 @@ const StyledWrapper = styled.div`
   input:checked + .slider:before {
     transform: translateX(100%);
     box-shadow:
-      inset 15px -4px 0px 15px #efdf2b,
-      0 0 10px 0px #efdf2b;
+      inset 12px -3px 0px 12px #efdf2b,
+      0 0 8px 0px #efdf2b;
   }
 `;
 
