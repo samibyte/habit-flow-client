@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import {
   Eye,
@@ -7,14 +7,17 @@ import {
   User,
   Mail,
   Lock,
-  Sparkles,
   Upload,
   Link as LinkIcon,
   X,
 } from "lucide-react";
 import toast from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
 
 const SignUp = () => {
+  const { createUser, updateUserProfile, signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -60,6 +63,44 @@ const SignUp = () => {
   const removeImage = () => {
     setImagePreview(null);
     setFormData((prev) => ({ ...prev, photoURL: "" }));
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    console.log(formData);
+    try {
+      await createUser(formData.email, formData.confirmPassword);
+      await updateUserProfile({
+        displayName: formData.name,
+        photoURL: formData.photoURL,
+      });
+      toast.success("Sign Up successful");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      if (err.code === "auth/email-already-in-use")
+        toast.error("This email is already registered.");
+      else if (err.code === "auth/invalid-email")
+        toast.error("Invalid email address.");
+      else toast.error("Signup failed. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      toast.success("Sign Up successful");
+      navigate("/");
+    } catch (err) {
+      if (err.code === "auth/popup-closed-by-user") {
+        toast.error("Google sign in was cancelled");
+      } else {
+        toast.error("Google sign in failed. Please try again.");
+      }
+    }
   };
 
   const passwordRequirements = [
@@ -346,6 +387,7 @@ const SignUp = () => {
 
             {/* Google button  */}
             <button
+              onClick={handleGoogleSignIn}
               type="button"
               className="w-full py-3 bg-base-200 border border-base-300 text-base-content font-semibold rounded-xl shadow-lg hover:bg-base-300 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group text-sm"
             >
