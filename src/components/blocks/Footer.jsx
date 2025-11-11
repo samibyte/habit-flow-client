@@ -1,65 +1,48 @@
+import { Link } from "react-router";
+import { motion } from "motion/react";
+import { Sparkles } from "lucide-react";
+
 const Footer = () => {
   const footerNavs = [
     {
-      label: "Resources",
+      label: "Product",
       items: [
         {
-          href: "javascript:void()",
-          name: "contact",
+          href: "/add-habits",
+          name: "Add Habit",
         },
         {
-          href: "javascript:void()",
-          name: "Support",
+          href: "/my-habits",
+          name: "My Habits",
         },
         {
-          href: "javascript:void()",
-          name: "Documentation",
+          href: "/browse-habits",
+          name: "Browse Habits",
         },
         {
-          href: "javascript:void()",
-          name: "Pricing",
+          href: "#",
+          name: "Features",
         },
       ],
     },
     {
-      label: "About",
+      label: "Support",
       items: [
         {
-          href: "javascript:void()",
-          name: "Terms",
+          href: "#",
+          name: "Help Center",
         },
         {
-          href: "javascript:void()",
-          name: "License",
+          href: "#",
+          name: "Contact Us",
         },
         {
-          href: "javascript:void()",
-          name: "Privacy",
+          href: "#",
+          name: "Community",
         },
         {
-          href: "javascript:void()",
-          name: "About US",
-        },
-      ],
-    },
-    {
-      label: "Explore",
-      items: [
-        {
-          href: "javascript:void()",
-          name: "Showcase",
-        },
-        {
-          href: "javascript:void()",
-          name: "Roadmap",
-        },
-        {
-          href: "javascript:void()",
-          name: "Languages",
-        },
-        {
-          href: "javascript:void()",
-          name: "Blog",
+          href: "#",
+          name: "FAQ",
         },
       ],
     },
@@ -67,161 +50,197 @@ const Footer = () => {
       label: "Company",
       items: [
         {
-          href: "javascript:void()",
+          href: "#",
+          name: "About Us",
+        },
+        {
+          href: "#",
+          name: "Privacy Policy",
+        },
+        {
+          href: "#",
+          name: "Terms of Service",
+        },
+        {
+          href: "#",
+          name: "Careers",
+        },
+      ],
+    },
+    {
+      label: "Connect",
+      items: [
+        {
+          href: "#",
+          name: "Blog",
+        },
+        {
+          href: "#",
+          name: "Newsletter",
+        },
+        {
+          href: "#",
           name: "Partners",
         },
         {
-          href: "javascript:void()",
-          name: "Team",
-        },
-        {
-          href: "javascript:void()",
-          name: "Careers",
+          href: "#",
+          name: "Success Stories",
         },
       ],
     },
   ];
 
   return (
-    <footer>
-      <div className="bg-base-200 pt-10 mx-auto px-4 md:px-8">
-        <div className="justify-between items-center gap-12 md:flex">
-          <div className="flex-1 max-w-lg">
-            <h3 className="text-2xl font-bold">
-              Get our beautiful newsletter straight to your inbox.
-            </h3>
-          </div>
-          <div className="flex-1 mt-6 md:mt-0">
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="flex items-center gap-x-3 md:justify-end"
+    <footer className="bg-base-200 border-t border-base-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="lg:flex lg:items-center lg:justify-between lg:gap-8 mb-12">
+          <div className="max-w-xl">
+            <motion.h3
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="text-2xl font-bold text-gradient-primary mb-3"
             >
-              <div className="relative">
+              Build Better Habits Together
+            </motion.h3>
+            <p className="text-base-content/70 text-lg">
+              Join thousands of users transforming their lives one habit at a
+              time. Get tips, motivation, and community support delivered to
+              your inbox.
+            </p>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="mt-6 lg:mt-0 flex-1 max-w-md"
+          >
+            <form className="flex gap-3">
+              <div className="flex-1 relative">
                 <svg
-                  className="w-6 h-6 text-gray-400 absolute left-3 inset-y-0 my-auto"
-                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 text-base-content/40 absolute left-3 top-1/2 transform -translate-y-1/2"
                   fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
                   stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
                 <input
                   type="email"
-                  required
                   placeholder="Enter your email"
-                  className="w-full pl-12 pr-3 py-2 text-gray-500 bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                  className="w-full pl-10 pr-4 py-3 bg-base-100 border border-base-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 text-base-content placeholder-base-content/40"
                 />
               </div>
-              <button className="block w-auto py-3 px-4 font-medium text-sm text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-3 gradient-primary text-primary-content font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-primary/25"
+              >
                 Subscribe
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
-        <div className="flex-1 mt-16 space-y-6 justify-between sm:flex md:space-y-0">
-          {footerNavs.map((item, idx) => (
-            <ul className="space-y-4 text-gray-600" key={idx}>
-              <h4 className="text-neutral font-semibold sm:pb-2">
-                {item.label}
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          {footerNavs.map((section, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <h4 className="text-base-content font-semibold mb-4 text-sm uppercase tracking-wider">
+                {section.label}
               </h4>
-              {item.items.map((el, idx) => (
-                <li key={idx}>
-                  <a href={el.href} className="hover:text-neutral duration-150">
-                    {el.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
+              <ul className="space-y-3">
+                {section.items.map((item, itemIndex) => (
+                  <li key={itemIndex}>
+                    <Link
+                      to={item.href}
+                      className="text-base-content/70 hover:text-primary transition-all duration-200 text-sm hover:translate-x-1 transform inline-block"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           ))}
         </div>
-        <div className="mt-10 py-10 border-t items-center justify-between sm:flex">
-          <p className="text-gray-600">
-            © 2022 Float UI Inc. All rights reserved.
-          </p>
-          <div className="flex items-center gap-x-6 text-gray-400 mt-6">
-            <a href="javascript:void()">
-              <svg
-                className="w-6 h-6 hover:text-gray-500 duration-150"
-                fill="none"
-                viewBox="0 0 48 48"
-              >
-                <g clipPath="url(#a)">
-                  <path
-                    fill="currentColor"
-                    d="M48 24C48 10.745 37.255 0 24 0S0 10.745 0 24c0 11.979 8.776 21.908 20.25 23.708v-16.77h-6.094V24h6.094v-5.288c0-6.014 3.583-9.337 9.065-9.337 2.625 0 5.372.469 5.372.469v5.906h-3.026c-2.981 0-3.911 1.85-3.911 3.75V24h6.656l-1.064 6.938H27.75v16.77C39.224 45.908 48 35.978 48 24z"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="a">
-                    <path fill="#fff" d="M0 0h48v48H0z" />
-                  </clipPath>
-                </defs>
+
+        <div className="pt-8 border-t border-base-300 flex flex-col md:flex-row justify-between items-center gap-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="flex items-center gap-3"
+          >
+            <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <div className="text-xl font-bold text-base-content">
+                HabitFlow
+              </div>
+              <p className="text-base-content/60 text-sm">
+                Build lasting habits, one day at a time
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-base-content/60 text-sm text-center md:text-left"
+          >
+            © {new Date().getFullYear()} HabitFlow. All rights reserved.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="flex items-center gap-4"
+          >
+            <motion.a
+              whileHover={{ scale: 1.1, y: -2 }}
+              href="#"
+              className="w-10 h-10 bg-base-100 border border-base-300 rounded-lg flex items-center justify-center text-base-content/70 hover:text-primary hover:border-primary/50 transition-all duration-200"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
               </svg>
-            </a>
-            <a href="javascript:void()">
-              <svg
-                className="w-6 h-6 hover:text-gray-500 duration-150"
-                fill="none"
-                viewBox="0 0 48 48"
-              >
-                <g clipPath="url(#clip0_17_80)">
-                  <path
-                    fill="currentColor"
-                    d="M15.1 43.5c18.11 0 28.017-15.006 28.017-28.016 0-.422-.01-.853-.029-1.275A19.998 19.998 0 0048 9.11c-1.795.798-3.7 1.32-5.652 1.546a9.9 9.9 0 004.33-5.445 19.794 19.794 0 01-6.251 2.39 9.86 9.86 0 00-16.788 8.979A27.97 27.97 0 013.346 6.299 9.859 9.859 0 006.393 19.44a9.86 9.86 0 01-4.462-1.228v.122a9.844 9.844 0 007.901 9.656 9.788 9.788 0 01-4.442.169 9.867 9.867 0 009.195 6.843A19.75 19.75 0 010 39.078 27.937 27.937 0 0015.1 43.5z"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_17_80">
-                    <path fill="#fff" d="M0 0h48v48H0z" />
-                  </clipPath>
-                </defs>
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1, y: -2 }}
+              href="#"
+              className="w-10 h-10 bg-base-100 border border-base-300 rounded-lg flex items-center justify-center text-base-content/70 hover:text-primary hover:border-primary/50 transition-all duration-200"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
               </svg>
-            </a>
-            <a href="javascript:void()">
-              <svg
-                className="w-6 h-6 hover:text-gray-500 duration-150"
-                fill="none"
-                viewBox="0 0 48 48"
-              >
-                <g fill="currentColor" clipPath="url(#clip0_910_44)">
-                  <path
-                    fillRule="evenodd"
-                    d="M24 1A24.086 24.086 0 008.454 6.693 23.834 23.834 0 00.319 21.044a23.754 23.754 0 003.153 16.172 23.98 23.98 0 0012.938 10.29c1.192.221 1.641-.518 1.641-1.146 0-.628-.024-2.45-.032-4.442-6.676 1.443-8.087-2.817-8.087-2.817-1.089-2.766-2.663-3.493-2.663-3.493-2.178-1.478.163-1.45.163-1.45 2.413.17 3.68 2.461 3.68 2.461 2.138 3.648 5.616 2.593 6.983 1.976.215-1.545.838-2.596 1.526-3.193-5.333-.6-10.937-2.647-10.937-11.791a9.213 9.213 0 012.472-6.406c-.246-.6-1.069-3.026.234-6.322 0 0 2.015-.64 6.602 2.446a22.904 22.904 0 0112.017 0c4.583-3.086 6.594-2.446 6.594-2.446 1.307 3.288.484 5.714.238 6.322a9.194 9.194 0 012.476 6.414c0 9.163-5.615 11.183-10.957 11.772.859.742 1.626 2.193 1.626 4.421 0 3.193-.028 5.762-.028 6.548 0 .636.433 1.38 1.65 1.146a23.98 23.98 0 0012.938-10.291 23.754 23.754 0 003.151-16.175A23.834 23.834 0 0039.56 6.69 24.086 24.086 0 0024.009 1H24z"
-                    clipRule="evenodd"
-                  />
-                  <path d="M9.089 35.264c-.052.119-.243.154-.398.071-.155-.083-.27-.237-.214-.36.056-.122.242-.154.397-.07.155.082.274.24.215.359zM10.063 36.343a.4.4 0 01-.493-.11c-.155-.167-.187-.396-.068-.499.12-.102.334-.055.489.11.155.167.19.396.072.499zM11.008 37.714c-.147.103-.397 0-.536-.206a.395.395 0 010-.569c.147-.098.397 0 .537.202.139.202.143.47 0 .573zM12.292 39.042c-.131.146-.397.106-.616-.091-.219-.198-.27-.467-.139-.609.131-.142.397-.102.624.091.226.194.27.466.131.609zM14.092 39.816c-.06.186-.33.269-.6.19-.27-.08-.449-.3-.397-.49.051-.19.326-.277.6-.19.274.087.449.297.397.49zM16.056 39.95c0 .194-.223.36-.509.364-.286.004-.52-.154-.52-.348 0-.193.222-.36.508-.363.286-.004.52.15.52.347zM17.884 39.646c.036.194-.163.395-.45.443-.285.047-.536-.067-.572-.257-.035-.19.171-.395.45-.447.278-.05.536.068.572.261z" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_910_44">
-                    <path fill="#fff" d="M0 0h48v48H0z" />
-                  </clipPath>
-                </defs>
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1, y: -2 }}
+              href="#"
+              className="w-10 h-10 bg-base-100 border border-base-300 rounded-lg flex items-center justify-center text-base-content/70 hover:text-primary hover:border-primary/50 transition-all duration-200"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
               </svg>
-            </a>
-            <a href="javascript:void()">
-              <svg
-                className="w-6 h-6 hover:text-gray-500 duration-150"
-                fill="currentColor"
-                viewBox="0 0 48 48"
-              >
-                <g clipPath="url(#clip0_17_63)">
-                  <path d="M24 4.322c6.413 0 7.172.028 9.694.14 2.343.104 3.61.497 4.453.825 1.116.432 1.922.957 2.756 1.791.844.844 1.36 1.64 1.79 2.756.329.844.723 2.12.826 4.454.112 2.53.14 3.29.14 9.693 0 6.413-.028 7.172-.14 9.694-.103 2.344-.497 3.61-.825 4.453-.431 1.116-.957 1.922-1.79 2.756-.845.844-1.642 1.36-2.757 1.791-.844.328-2.119.722-4.453.825-2.532.112-3.29.14-9.694.14-6.413 0-7.172-.028-9.694-.14-2.343-.103-3.61-.497-4.453-.825-1.115-.431-1.922-.956-2.756-1.79-.844-.844-1.36-1.641-1.79-2.757-.329-.844-.723-2.119-.826-4.453-.112-2.531-.14-3.29-.14-9.694 0-6.412.028-7.172.14-9.694.103-2.343.497-3.609.825-4.453.431-1.115.957-1.921 1.79-2.756.845-.844 1.642-1.36 2.757-1.79.844-.329 2.119-.722 4.453-.825 2.522-.113 3.281-.141 9.694-.141zM24 0c-6.516 0-7.331.028-9.89.14-2.55.113-4.304.526-5.822 1.116-1.585.619-2.926 1.435-4.257 2.775-1.34 1.332-2.156 2.672-2.775 4.247C.666 9.806.253 11.55.141 14.1.028 16.669 0 17.484 0 24s.028 7.331.14 9.89c.113 2.55.526 4.304 1.116 5.822.619 1.585 1.435 2.925 2.775 4.257a11.732 11.732 0 004.247 2.765c1.528.591 3.272 1.003 5.822 1.116 2.56.112 3.375.14 9.89.14 6.516 0 7.332-.028 9.891-.14 2.55-.113 4.303-.525 5.822-1.116a11.732 11.732 0 004.247-2.765 11.732 11.732 0 002.766-4.247c.59-1.528 1.003-3.272 1.115-5.822.113-2.56.14-3.375.14-9.89 0-6.516-.027-7.332-.14-9.891-.112-2.55-.525-4.303-1.115-5.822-.591-1.594-1.407-2.935-2.747-4.266a11.732 11.732 0 00-4.247-2.765C38.194.675 36.45.262 33.9.15 31.331.028 30.516 0 24 0z" />
-                  <path d="M24 11.672c-6.806 0-12.328 5.522-12.328 12.328 0 6.806 5.522 12.328 12.328 12.328 6.806 0 12.328-5.522 12.328-12.328 0-6.806-5.522-12.328-12.328-12.328zm0 20.325a7.998 7.998 0 010-15.994 7.998 7.998 0 010 15.994zM39.694 11.184a2.879 2.879 0 11-2.878-2.878 2.885 2.885 0 012.878 2.878z" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_17_63">
-                    <path d="M0 0h48v48H0z" />
-                  </clipPath>
-                </defs>
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1, y: -2 }}
+              href="#"
+              className="w-10 h-10 bg-base-100 border border-base-300 rounded-lg flex items-center justify-center text-base-content/70 hover:text-primary hover:border-primary/50 transition-all duration-200"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
               </svg>
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </div>
       </div>
     </footer>
