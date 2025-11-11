@@ -10,9 +10,11 @@ import {
   Upload,
   Link as LinkIcon,
   X,
+  CheckCircle,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
+import axios from "axios";
 
 const SignUp = () => {
   const { createUser, updateUserProfile, signInWithGoogle } = useAuth();
@@ -30,6 +32,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [activeImageMethod, setActiveImageMethod] = useState("url");
+  const [uploading, setUploading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -38,25 +41,68 @@ const SignUp = () => {
     });
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      if (!file.type.startsWith("image/")) {
-        toast.error("Please select an image file");
-        return;
-      }
+    if (!file) return;
 
-      if (file.size > 5 * 1024 * 1024) {
-        toast.error("Image size should be less than 5MB");
-        return;
-      }
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please select a valid image file (JPEG, PNG, GIF, WEBP)");
+      return;
+    }
 
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Image size should be less than 5MB");
+      return;
+    }
+
+    const apiKey = import.meta.env.VITE_IMG_BB_API;
+
+    if (!apiKey) {
+      toast.error("Image upload service is not configured");
+      return;
+    }
+
+    setUploading(true);
+
+    try {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
-        setFormData((prev) => ({ ...prev, photoURL: reader.result }));
       };
       reader.readAsDataURL(file);
+
+      const formData = new FormData();
+      formData.append("image", file);
+
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${apiKey}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
+
+      if (response.data.success) {
+        setFormData((prev) => ({
+          ...prev,
+          photoURL: response.data.data.url,
+        }));
+        toast.success("Image uploaded successfully!");
+      } else {
+        throw new Error(response.data.error?.message || "Upload failed");
+      }
+    } catch (error) {
+      console.error("Upload error:", error);
+      if (error.response?.data?.error?.message) {
+        toast.error(`Upload failed: ${error.response.data.error.message}`);
+      } else {
+        toast.error("Failed to upload image. Please try again.");
+      }
+      setImagePreview("");
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -67,23 +113,38 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    if (!allRequirementsMet) {
+      toast.error("Please meet all password requirements");
+      return;
+    }
+
     setIsLoading(true);
-    console.log(formData);
+
     try {
-      await createUser(formData.email, formData.confirmPassword);
+      await createUser(formData.email, formData.password);
       await updateUserProfile({
         displayName: formData.name,
-        photoURL: formData.photoURL,
+        photoURL: formData.photoURL || null,
       });
-      toast.success("Sign Up successful");
+      toast.success("Account created successfully!");
       navigate("/");
     } catch (err) {
       console.log(err);
-      if (err.code === "auth/email-already-in-use")
+      if (err.code === "auth/email-already-in-use") {
         toast.error("This email is already registered.");
-      else if (err.code === "auth/invalid-email")
+      } else if (err.code === "auth/invalid-email") {
         toast.error("Invalid email address.");
-      else toast.error("Signup failed. Please try again.");
+      } else if (err.code === "auth/weak-password") {
+        toast.error("Password is too weak. Please use a stronger password.");
+      } else {
+        toast.error("Signup failed. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -92,7 +153,7 @@ const SignUp = () => {
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle();
-      toast.success("Sign Up successful");
+      toast.success("Signed in successfully!");
       navigate("/");
     } catch (err) {
       if (err.code === "auth/popup-closed-by-user") {
@@ -104,12 +165,13 @@ const SignUp = () => {
   };
 
   const passwordRequirements = [
-    { text: "6+ character", met: formData.password.length >= 6 },
-    { text: "A-Z", met: /[A-Z]/.test(formData.password) },
-    { text: "a-z", met: /[a-z]/.test(formData.password) },
+    { text: "6+ characters", met: formData.password.length >= 6 },
+    { text: "Uppercase letter", met: /[A-Z]/.test(formData.password) },
+    { text: "Lowercase letter", met: /[a-z]/.test(formData.password) },
   ];
 
   const allRequirementsMet = passwordRequirements.every((req) => req.met);
+  const passwordsMatch = formData.password === formData.confirmPassword;
 
   return (
     <div className="min-h-screen bg-base-100 flex items-center justify-center p-4 py-8">
@@ -183,7 +245,7 @@ const SignUp = () => {
                 Profile Photo (Optional)
               </label>
 
-              {/* Image preveiw */}
+              {/* Image preview */}
               {(imagePreview || formData.photoURL) && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -259,16 +321,34 @@ const SignUp = () => {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                 >
-                  <label className="flex flex-col items-center justify-center w-full p-4 border-2 border-dashed border-base-300 rounded-xl cursor-pointer bg-base-200/50 hover:bg-base-200 transition-colors duration-300">
-                    <Upload className="w-5 h-5 text-base-content/50 mb-1" />
-                    <span className="text-sm font-medium text-base-content/70">
-                      Click to upload
-                    </span>
+                  <label
+                    className={`flex flex-col items-center justify-center w-full p-4 border-2 border-dashed rounded-xl cursor-pointer transition-colors duration-300 ${
+                      uploading
+                        ? "border-primary/50 bg-primary/5"
+                        : "border-base-300 bg-base-200/50 hover:bg-base-200"
+                    }`}
+                  >
+                    {uploading ? (
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                        <span className="text-sm font-medium text-primary">
+                          Uploading...
+                        </span>
+                      </div>
+                    ) : (
+                      <>
+                        <Upload className="w-5 h-5 text-base-content/50 mb-1" />
+                        <span className="text-sm font-medium text-base-content/70">
+                          Click to upload
+                        </span>
+                      </>
+                    )}
                     <input
                       type="file"
                       accept="image/*"
                       onChange={handleImageUpload}
                       className="hidden"
+                      disabled={uploading}
                     />
                   </label>
                 </motion.div>
@@ -309,7 +389,7 @@ const SignUp = () => {
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  className="flex gap-3 pt-1"
+                  className="flex flex-wrap gap-3 pt-1"
                 >
                   {passwordRequirements.map((req, index) => (
                     <motion.div
@@ -317,13 +397,15 @@ const SignUp = () => {
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.1 }}
-                      className={`flex items-center gap-1 text-sm ${
+                      className={`flex items-center gap-1 text-xs ${
                         req.met ? "text-success" : "text-base-content/50"
                       }`}
                     >
-                      <div
-                        className={`w-1.5 h-1.5 rounded-full ${req.met ? "bg-success" : "bg-base-300"}`}
-                      />
+                      {req.met ? (
+                        <CheckCircle className="w-3 h-3" />
+                      ) : (
+                        <div className="w-3 h-3 rounded-full bg-base-300" />
+                      )}
                       {req.text}
                     </motion.div>
                   ))}
@@ -343,7 +425,13 @@ const SignUp = () => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 py-2.5 text-sm bg-base-200 border border-base-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 pr-10"
+                  className={`w-full px-3 py-2.5 text-sm bg-base-200 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 pr-10 ${
+                    formData.confirmPassword
+                      ? passwordsMatch
+                        ? "border-success/50"
+                        : "border-error/50"
+                      : "border-base-300"
+                  }`}
                   placeholder="Confirm your password"
                 />
                 <button
@@ -358,20 +446,27 @@ const SignUp = () => {
                   )}
                 </button>
               </div>
+              {formData.confirmPassword && !passwordsMatch && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-error text-xs"
+                >
+                  Passwords do not match
+                </motion.p>
+              )}
             </div>
 
             {/* Sign up button */}
             <button
               type="submit"
               disabled={
-                !allRequirementsMet ||
-                formData.password !== formData.confirmPassword ||
-                isLoading
+                !allRequirementsMet || !passwordsMatch || isLoading || uploading
               }
-              className="w-full py-3 bg-linear-to-r from-primary to-secondary via-primary hover:via-secondary transition-colors text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden group text-sm"
+              className="w-full py-3 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group text-sm"
             >
               {/* Shine effect */}
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
               <span className="relative z-10">
                 {isLoading ? (
@@ -389,7 +484,8 @@ const SignUp = () => {
             <button
               onClick={handleGoogleSignIn}
               type="button"
-              className="w-full py-3 bg-base-200 border border-base-300 text-base-content font-semibold rounded-xl shadow-lg hover:bg-base-300 cursor-pointer hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group text-sm"
+              disabled={isLoading || uploading}
+              className="w-full py-3 bg-base-200 border border-base-300 text-base-content font-semibold rounded-xl shadow-lg hover:bg-base-300 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24">
                 <path
