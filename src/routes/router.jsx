@@ -4,6 +4,9 @@ import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import ForgotPassword from "../pages/ForgotPassword";
+import BrowseHabits from "../pages/BrowseHabits";
+import MyHabits from "../pages/MyHabits";
+import AddHabit from "../pages/AddHabit";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +16,18 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/habits",
+        element: <BrowseHabits />,
+      },
+      {
+        path: "/my-habits",
+        element: <MyHabits />,
+      },
+      {
+        path: "/add-habits",
+        element: <AddHabit />,
       },
       {
         path: "/sign-up",
