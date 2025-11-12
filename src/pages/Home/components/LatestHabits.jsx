@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import useAxios from "../../hooks/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import { motion, AnimatePresence } from "motion/react";
 import { Sparkles, TrendingUp, Clock } from "lucide-react";
 import { Link } from "react-router";
-import PublicHabitCard from "../ui/PublicHabitCard";
-import HabitCardSkeleton from "../ui/HabitCardSkeleton";
+import PublicHabitCard from "../../../components/ui/PublicHabitCard";
+import HabitCardSkeleton from "../../../components/ui/HabitCardSkeleton";
 
 const LatestHabits = () => {
   const axiosInstance = useAxios();

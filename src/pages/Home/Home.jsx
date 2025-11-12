@@ -1,6 +1,6 @@
-import Carousel from "../components/blocks/Carousel/Carousel";
-import WhyBuildHabits from "../components/blocks/WhyBuildHabits";
-import LatestHabits from "../components/blocks/LatestHabits";
+import Carousel from "./components/Carousel/Carousel";
+import WhyBuildHabits from "./components/WhyBuildHabits";
+import LatestHabits from "./components/LatestHabits";
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
         <Carousel />
       </section>
 
-      <section className="max-w-7xl mx-auto my-10 py-10 px-4 sm:px-6">
+      <section className="max-w-7xl mx-auto my-5 md:my-10 py-10 px-4 sm:px-6">
         <LatestHabits />
       </section>
 

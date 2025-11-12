@@ -120,7 +120,6 @@
 }
 
 .arrow:hover {
-  background: rgba(124, 58, 237, 1);
   transform: translateY(-50%) scale(1.1);
 }
 
