@@ -1,6 +1,8 @@
 import Carousel from "./components/Carousel/Carousel";
 import WhyBuildHabits from "./components/WhyBuildHabits";
 import LatestHabits from "./components/LatestHabits";
+import HabitRoadmap from "./components/HabitRoadmap";
+import CallToAction from "./components/CallToAction";
 
 const Home = () => {
   return (
@@ -15,6 +17,13 @@ const Home = () => {
 
       <section>
         <WhyBuildHabits />
+      </section>
+
+      <section>
+        <HabitRoadmap />
+      </section>
+      <section>
+        <CallToAction />
       </section>
     </div>
   );

@@ -13,7 +13,7 @@ const LatestHabits = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchLatestHabits = async () => {
+    (async () => {
       try {
         setLoading(true);
         setError(null);
@@ -25,9 +25,7 @@ const LatestHabits = () => {
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchLatestHabits();
+    })();
   }, [axiosInstance]);
 
   return (

@@ -67,11 +67,11 @@ const WhyBuildHabits = () => {
   };
 
   return (
-    <section className="relative py-20 md:py-34 px-6 bg-linear-to-b from-base-100 to-base-200 overflow-hidden">
+    <section className="relative py-24 md:py-34 px-6 bg-linear-to-b from-base-100 to-base-100 overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-30 left-10 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-24 right-10 w-80 h-96 bg-purple-200/20 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto">
