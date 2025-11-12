@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useState } from "react";
 import { Eye, EyeOff, Mail, Lock, Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
@@ -8,6 +8,7 @@ import useAuth from "../hooks/useAuth";
 const Login = () => {
   const { signInUser, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -30,7 +31,7 @@ const Login = () => {
     try {
       await signInUser(formData.email, formData.password);
       toast.success("Login successful");
-      navigate("/");
+      navigate(location.state?.from || "/");
     } catch (err) {
       console.log(err);
       if (err.code === "auth/invalid-credential") {
@@ -53,7 +54,7 @@ const Login = () => {
     try {
       await signInWithGoogle();
       toast.success("Login successful");
-      navigate("/");
+      navigate(location.state?.from || "/");
     } catch (err) {
       if (err.code === "auth/popup-closed-by-user") {
         toast.error("Google sign in was cancelled");

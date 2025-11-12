@@ -1,17 +1,21 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../layouts/RootLayout";
-import Home from "../pages/Home";
+import Home from "../pages/Home/Home";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import ForgotPassword from "../pages/ForgotPassword";
-import BrowseHabits from "../pages/BrowseHabits";
-import MyHabits from "../pages/MyHabits";
+import MyHabits from "../pages/MyHabits/MyHabits";
 import AddHabit from "../pages/AddHabit";
+import HabitDetails from "../pages/HabitDetails/HabitDetails";
+import BrowseHabits from "../pages/BrowseHabits/BrowseHabits";
+import PrivateRouter from "./PrivateRouter";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -22,12 +26,28 @@ const router = createBrowserRouter([
         element: <BrowseHabits />,
       },
       {
+        path: "/habit-details/:id",
+        element: (
+          <PrivateRouter>
+            <HabitDetails />
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "/my-habits",
-        element: <MyHabits />,
+        element: (
+          <PrivateRouter>
+            <MyHabits />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/add-habits",
-        element: <AddHabit />,
+        element: (
+          <PrivateRouter>
+            <AddHabit />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/sign-up",
