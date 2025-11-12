@@ -160,6 +160,7 @@ const PublicHabitItem = ({ habit }) => {
           <div className="shrink-0">
             <Link
               to={`/habit-details/${_id}`}
+              state={{ from: location.pathname }}
               className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 hover:bg-primary text-primary hover:text-primary-content font-semibold rounded-xl border border-primary/30 hover:border-primary transition-all duration-300"
             >
               <Eye className="w-4 h-4" />

@@ -89,14 +89,16 @@ const PublicHabitCard = ({ habit }) => {
           </p>
 
           {/* Goal text */}
-          {habit.goal && habit.goal !== habit.description && (
-            <div className="flex items-start gap-2 p-3 bg-base-300/40 rounded-lg">
-              <div className="w-1 h-1 rounded-full bg-primary mt-2 shrink-0"></div>
-              <p className="text-xs text-base-content/70 font-medium line-clamp-1 italic">
-                "{habit.goal}"
-              </p>
-            </div>
-          )}
+          <div className="h-4">
+            {habit.goal && habit.goal !== habit.description && (
+              <div className="flex items-start gap-2 p-3 bg-base-300/40 rounded-lg">
+                <div className="w-1 h-1 rounded-full bg-primary mt-2 shrink-0"></div>
+                <p className="text-xs text-base-content/70 font-medium line-clamp-1 italic">
+                  "{habit.goal}"
+                </p>
+              </div>
+            )}
+          </div>
 
           <div className="flex justify-between">
             {/* Creator */}
@@ -169,6 +171,7 @@ const PublicHabitCard = ({ habit }) => {
         <div className="p-5 pt-0">
           <Link
             to={`/habit-details/${habit._id}`}
+            state={{ from: location.pathname }}
             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 hover:bg-primary text-primary hover:text-primary-content font-semibold rounded-xl border border-primary/30 hover:border-primary transition-all duration-300"
           >
             <Eye className="w-4 h-4" />

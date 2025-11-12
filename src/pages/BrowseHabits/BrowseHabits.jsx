@@ -58,10 +58,7 @@ const BrowseHabits = () => {
         case "oldest":
           return new Date(a.createdAt) - new Date(b.createdAt);
         case "streak":
-          return (
-            (b.completionHistory?.length || 0) -
-            (a.completionHistory?.length || 0)
-          );
+          return (b.streak || 0) - (a.streak || 0);
         case "name":
           return a.title.localeCompare(b.title);
         default:
