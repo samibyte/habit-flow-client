@@ -134,13 +134,9 @@ const Footer = () => {
                   className="w-full pl-10 pr-4 py-3 bg-base-100 border border-base-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 text-base-content placeholder-base-content/40"
                 />
               </div>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 gradient-primary text-primary-content font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-primary/25"
-              >
+              <button className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-102 ">
                 Subscribe
-              </motion.button>
+              </button>
             </form>
           </motion.div>
         </div>

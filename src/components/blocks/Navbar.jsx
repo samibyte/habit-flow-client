@@ -115,13 +115,13 @@ const Navbar = () => {
               <ThemeSwitch />
               <Link
                 to="/login"
-                className="btn px-4 py-3 font-montserrat h-auto btn-ghost text-base-content/70 hover:text-primary"
+                className="block py-3 px-8 text-center rounded-lg font-medium text-primary border border-primary hover:bg-primary hover:text-primary-content transition-all duration-200"
               >
                 Log in
               </Link>
               <Link
                 to="/sign-up"
-                className="btn px-4 py-3 font-montserrat h-auto btn-primary shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="inline-flex items-center gap-2 px-4 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-102 "
               >
                 Sign Up
                 <svg
@@ -392,7 +392,7 @@ const Navbar = () => {
               <Link
                 to="/sign-up"
                 onClick={() => setState(false)}
-                className="w-full block py-3 text-center rounded-xl font-medium bg-primary text-primary-content shadow-lg hover:shadow-xl transition-all duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 "
               >
                 Sign Up
               </Link>
