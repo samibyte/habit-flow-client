@@ -13,7 +13,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import toast from "react-hot-toast";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
 const SignUp = () => {

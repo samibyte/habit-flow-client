@@ -1,9 +1,9 @@
 import { motion } from "motion/react";
 import { Link, useLocation } from "react-router";
 import { useState } from "react";
-import { Mail, Sparkles, ArrowLeft, CheckCircle } from "lucide-react";
+import { Mail, ArrowLeft, CheckCircle } from "lucide-react";
 import toast from "react-hot-toast";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const ForgotPassword = () => {
   const location = useLocation();

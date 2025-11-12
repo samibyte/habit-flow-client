@@ -8,7 +8,6 @@ const MenuSwitch = ({ state, setState }) => {
           type="checkbox"
           onChange={() => {
             setState(!state);
-            console.log(state);
           }}
         />
         <svg viewBox="0 0 32 32">

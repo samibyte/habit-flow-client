@@ -1,9 +1,9 @@
 import { motion } from "motion/react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useState } from "react";
-import { Eye, EyeOff, Mail, Lock, Sparkles } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 import toast from "react-hot-toast";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useAuth();

@@ -31,7 +31,7 @@ const useAxiosSecure = () => {
         const status = error.response?.status;
         if (status === 401 || status === 403) {
           console.warn("Unauthorized access — signing out user");
-          signOutUser().then(() => navigate("/register"));
+          signOutUser().then(() => navigate("/sign-up"));
         }
         return Promise.reject(error);
       },
