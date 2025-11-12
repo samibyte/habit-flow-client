@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Eye, User, Flame, Calendar, Zap, Circle } from "lucide-react";
 import { Link } from "react-router";
 
-const PublicHabitCard = ({ habit, onViewDetails }) => {
+const PublicHabitCard = ({ habit }) => {
   const getCategoryGradient = (category) => {
     const gradients = {
       Morning: "gradient-streak",
@@ -31,8 +31,7 @@ const PublicHabitCard = ({ habit, onViewDetails }) => {
       )
     : 0;
 
-  const streak = habit.completionHistory?.length;
-
+  const { streak } = habit;
   const difficultyConfig = getDifficultyConfig(habit.difficulty);
 
   return (
@@ -54,7 +53,19 @@ const PublicHabitCard = ({ habit, onViewDetails }) => {
             {/* Streak badge */}
             {streak && (
               <div
-                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg ${getCategoryGradient(habit.category)} text-white`}
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg ${
+                  streak >= 30
+                    ? "gradient-streak-mega"
+                    : streak >= 14
+                      ? "gradient-streak"
+                      : streak >= 7
+                        ? "gradient-primary-dark"
+                        : streak >= 3
+                          ? "gradient-primary"
+                          : streak >= 1
+                            ? "bg-warning"
+                            : "bg-base-300"
+                } text-white`}
               >
                 <Flame
                   className={`w-3.5 h-3.5 ${streak >= 7 ? "streak-fire" : ""}`}
