@@ -52,7 +52,7 @@ const ForgotPassword = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-sm relative z-10"
+        className="w-full max-w-md relative z-10"
       >
         {/* Header */}
         <div className="text-center mb-6">
@@ -136,7 +136,7 @@ const ForgotPassword = () => {
                 <h3 className="font-semibold text-base-content mb-2">
                   Check Your Email
                 </h3>
-                <p className="text-sm text-base-content/70">
+                <p className="text-md text-base-content/70">
                   We've sent a password reset link to:
                   <br />
                   <span className="font-medium text-primary">{email}</span>
