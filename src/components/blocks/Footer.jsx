@@ -16,7 +16,7 @@ const Footer = () => {
           name: "My Habits",
         },
         {
-          href: "/browse-habits",
+          href: "/habits",
           name: "Browse Habits",
         },
         {
@@ -129,6 +129,8 @@ const Footer = () => {
                   />
                 </svg>
                 <input
+                  id="email"
+                  autoComplete="email"
                   type="email"
                   placeholder="Enter your email"
                   className="w-full pl-10 pr-4 py-3 bg-base-100 border border-base-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 text-base-content placeholder-base-content/40"

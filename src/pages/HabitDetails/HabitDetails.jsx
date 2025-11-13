@@ -111,8 +111,6 @@ const HabitDetails = () => {
     }));
   };
 
-  console.log(getWeeklyProgress());
-
   const getStreakStyle = (streak) => {
     if (streak >= 30) {
       return {
@@ -198,7 +196,7 @@ const HabitDetails = () => {
     ? getWeeklyProgress(habit.completionHistory)
     : [];
 
-  console.log(weeklyProgress);
+  // console.log(weeklyProgress);
 
   if (loading) {
     return <LoadingState />;
