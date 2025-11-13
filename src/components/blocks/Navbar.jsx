@@ -188,30 +188,27 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="md:hidden fixed top-0 right-0 bottom-0 w-80 z-50 bg-base-100 shadow-2xl border-l border-base-300/50"
-            style={{
-              // Force solid background and prevent any transparency issues
-              backgroundColor: "var(--color-base-100)",
-              backgroundImage: "none",
-            }}
+            className="md:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm z-50 bg-base-100 shadow-2xl border-l border-base-300"
           >
             {/* Header with Close Button */}
-            <div className="flex items-center justify-between p-6 border-b border-base-300/50">
+            <div className="flex items-center justify-between p-4 border-b border-base-300 bg-base-100">
               <div className="flex items-center gap-3">
-                <Menu />
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <User className="w-4 h-4 text-primary" />
+                </div>
                 <span className="font-bold text-lg">Menu</span>
               </div>
               <button
                 onClick={() => setState(false)}
-                className="p-2 hover:bg-base-200 rounded-xl transition-colors"
+                className="p-2 hover:bg-base-200 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* User Profile */}
-            <div className="p-6 border-b border-base-300/50">
-              <div className="flex items-center gap-4">
+            <div className="p-4 border-b border-base-300 bg-base-100">
+              <div className="flex items-center gap-3">
                 <div className="relative">
                   <img
                     src={
@@ -219,12 +216,12 @@ const Navbar = () => {
                       `https://avatar.iran.liara.run/username?username=${user.displayName}+`
                     }
                     alt={user.displayName || "User"}
-                    className="w-12 h-12 rounded-xl border-2 border-primary/20 object-cover"
+                    className="w-10 h-10 rounded-lg border-2 border-primary/20 object-cover"
                   />
                   <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-base-100"></div>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-base-content truncate">
+                  <h3 className="font-semibold text-base-content truncate">
                     {user.displayName || "User"}
                   </h3>
                   <p className="text-sm text-base-content/60 truncate">
@@ -235,86 +232,78 @@ const Navbar = () => {
             </div>
 
             {/* Quick Stats */}
-            <div className="p-6 border-b border-base-300/50">
-              <div className="grid grid-cols-3 gap-3">
-                <div className="text-center">
-                  <div className="text-xl font-bold text-primary">12</div>
+            <div className="p-4 border-b border-base-300 bg-base-200/50">
+              <div className="grid grid-cols-3 gap-2">
+                <div className="text-center p-2 rounded-lg bg-base-100">
+                  <div className="text-lg font-bold text-primary">12</div>
                   <div className="text-xs text-base-content/60">Habits</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold text-secondary">45</div>
+                <div className="text-center p-2 rounded-lg bg-base-100">
+                  <div className="text-lg font-bold text-secondary">45</div>
                   <div className="text-xs text-base-content/60">Streak</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-xl font-bold text-accent">85%</div>
+                <div className="text-center p-2 rounded-lg bg-base-100">
+                  <div className="text-lg font-bold text-accent">85%</div>
                   <div className="text-xs text-base-content/60">Progress</div>
                 </div>
               </div>
             </div>
 
-            {/* Navigation */}
-            <div className="p-4 space-y-2">
-              {navigation.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <NavLink
-                    key={idx}
-                    to={item.path}
-                    onClick={() => setState(false)}
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group ${
-                        isActive
-                          ? "bg-primary text-primary-content shadow-lg"
-                          : "text-base-content/70 hover:bg-base-200 hover:text-base-content"
-                      }`
-                    }
-                  >
-                    <div
+            {/* Scrollable Content */}
+            <div
+              className="flex-1 overflow-y-auto bg-base-100"
+              style={{ maxHeight: "calc(100vh - 280px)" }}
+            >
+              {/* Navigation */}
+              <div className="p-3 space-y-1 bg-base-100">
+                {navigation.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <NavLink
+                      key={idx}
+                      to={item.path}
+                      onClick={() => setState(false)}
                       className={({ isActive }) =>
-                        `p-2 rounded-lg transition-colors ${
+                        `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 group ${
                           isActive
-                            ? "bg-primary-content/20"
-                            : "bg-base-200 group-hover:bg-base-300"
+                            ? "bg-primary text-primary-content shadow-md"
+                            : "text-base-content/70 hover:bg-base-200 hover:text-base-content"
                         }`
                       }
                     >
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <span className="font-medium">{item.title}</span>
-                  </NavLink>
-                );
-              })}
+                      <Icon className="w-5 h-5" />
+                      <span className="font-medium">{item.title}</span>
+                    </NavLink>
+                  );
+                })}
+              </div>
+
+              {/* User Menu */}
+              <div className="p-3 border-t border-base-300 space-y-1 bg-base-100">
+                {userMenu.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={idx}
+                      to={item.path}
+                      onClick={() => setState(false)}
+                      className="flex items-center gap-3 p-3 rounded-lg text-base-content/70 hover:bg-base-200 hover:text-base-content transition-all duration-200 group"
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span className="font-medium">{item.title}</span>
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* User Menu */}
-            <div className="p-4 border-t border-base-300/50 space-y-2">
-              {userMenu.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={idx}
-                    to={item.path}
-                    onClick={() => setState(false)}
-                    className="flex items-center gap-3 p-3 rounded-xl text-base-content/70 hover:bg-base-200 hover:text-base-content transition-all duration-200 group"
-                  >
-                    <div className="p-2 rounded-lg bg-base-200 group-hover:bg-base-300 transition-colors">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <span className="font-medium">{item.title}</span>
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Log Out Button */}
-            <div className="p-4 border-t border-base-300/50 mt-auto">
+            {/* Log Out Button - Fixed at bottom */}
+            <div className="p-4 border-t border-base-300 bg-base-100">
               <button
                 onClick={handleLogOut}
-                className="w-full flex items-center gap-3 p-3 rounded-xl text-error hover:bg-error/10 transition-all duration-200 group"
+                className="w-full flex items-center gap-3 p-3 rounded-lg text-error hover:bg-error/10 transition-all duration-200"
               >
-                <div className="p-2 rounded-lg bg-error/10 group-hover:bg-error/20 transition-colors">
-                  <LogOut className="w-4 h-4" />
-                </div>
+                <LogOut className="w-5 h-5" />
                 <span className="font-medium">Sign Out</span>
               </button>
             </div>
@@ -328,75 +317,70 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="md:hidden fixed top-0 right-0 bottom-0 w-80 z-50 bg-base-100 shadow-2xl border-l border-base-300/50"
-            style={{
-              // Force solid background and prevent any transparency issues
-              backgroundColor: "var(--color-base-100)",
-              backgroundImage: "none",
-            }}
+            className="md:hidden fixed top-0 right-0 bottom-0 w-full max-w-sm z-50 bg-base-100 shadow-2xl border-l border-base-300"
           >
             {/* Header with Close Button */}
-            <div className="flex items-center justify-between p-6 border-b border-base-300/50">
+            <div className="flex items-center justify-between p-4 border-b border-base-300 bg-base-100">
               <div className="flex items-center gap-3">
-                <Menu />
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Menu className="w-4 h-4 text-primary" />
+                </div>
                 <span className="font-bold text-lg">Menu</span>
               </div>
               <button
                 onClick={() => setState(false)}
-                className="p-2 hover:bg-base-200 rounded-xl transition-colors"
+                className="p-2 hover:bg-base-200 rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Navigation */}
-            <div className="p-4 space-y-2">
-              {navigation.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <NavLink
-                    key={idx}
-                    to={item.path}
-                    onClick={() => setState(false)}
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group ${
-                        isActive
-                          ? "bg-primary text-primary-content shadow-lg"
-                          : "text-base-content/70 hover:bg-base-200 hover:text-base-content"
-                      }`
-                    }
-                  >
-                    <div
+            {/* Scrollable Content */}
+            <div
+              className="flex-1 overflow-y-auto bg-base-100"
+              style={{ maxHeight: "calc(100vh - 200px)" }}
+            >
+              {/* Navigation */}
+              <div className="p-3 space-y-1 bg-base-100">
+                {navigation.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <NavLink
+                      key={idx}
+                      to={item.path}
+                      onClick={() => setState(false)}
                       className={({ isActive }) =>
-                        `p-2 rounded-lg transition-colors ${
+                        `flex items-center gap-3 p-3 rounded-lg transition-all duration-200 group ${
                           isActive
-                            ? "bg-primary-content/20"
-                            : "bg-base-200 group-hover:bg-base-300"
+                            ? "bg-primary text-primary-content shadow-md"
+                            : "text-base-content/70 hover:bg-base-200 hover:text-base-content"
                         }`
                       }
                     >
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <span className="font-medium">{item.title}</span>
-                  </NavLink>
-                );
-              })}
+                      <Icon className="w-5 h-5" />
+                      <span className="font-medium">{item.title}</span>
+                    </NavLink>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Auth Buttons */}
-            <div className="p-4 border-t border-base-300/50 mt-auto space-y-3">
+            {/* Auth Buttons - Fixed at bottom */}
+            <div className="p-4 border-t border-base-300 bg-base-100 space-y-3">
               <Link
                 to="/login"
                 onClick={() => setState(false)}
-                className="w-full block py-3 text-center rounded-xl font-medium text-primary border border-primary hover:bg-primary hover:text-primary-content transition-all duration-200"
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-lg font-medium text-primary border border-primary hover:bg-primary hover:text-primary-content transition-all duration-200"
               >
+                <User className="w-4 h-4" />
                 Log in
               </Link>
               <Link
                 to="/sign-up"
                 onClick={() => setState(false)}
-                className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 "
+                className="w-full flex items-center justify-center gap-2 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200"
               >
+                <Sparkles className="w-4 h-4" />
                 Sign Up
               </Link>
             </div>
