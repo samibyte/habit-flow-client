@@ -6,7 +6,7 @@ This is the **client-side application** for the Habit Flow web app — a modern,
 
 ## **Live Site**
 
-Access the deployed client here: `https://<your-netlify-or-vercel-url>`
+Access the deployed client here: `https://habit-flows-here.netlify.app`
 
 ---
 
@@ -67,27 +67,12 @@ Access the deployed client here: `https://<your-netlify-or-vercel-url>`
 
 ---
 
-## **Folder Structure**
-
-```
-src/
- ├─ components/      # Reusable UI components
- ├─ hooks/           # Custom React hooks
- ├─ pages/           # Page components (Home, AddHabit, MyHabits, Login, Register, Analytics)
- ├─ services/        # API calls and client services
- ├─ utils/           # Helper functions
- ├─ App.jsx          # Main app component with router
- └─ main.jsx         # Entry point
-```
-
----
-
 ## **Installation & Development**
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/habit-flow-client.git
+git clone https://github.com/samibyte/habit-flow-client.git
 cd habit-flow-client
 ```
 
@@ -133,8 +118,9 @@ npm run preview
 - **TailwindCSS & DaisyUI** – Styling and UI components
 - **Firebase** – Authentication & user management
 - **Axios** – API calls
-- **Framer Motion & Lottie** – Animations
+- **Framer Motion** – Animations
 - **React Hot Toast & SweetAlert2** – Notifications
+- **React Tool Tip** – Tooltip
 - **Recharts** – Analytics charts
 - **Keen Slider** – Hero slider
 - **Lucide-react** – Icons
@@ -151,13 +137,6 @@ npm run preview
 - Real-time habit streak updates
 - Responsive and polished design
 - Toast-based notifications for all actions
-
----
-
-## **Contribution & Commits**
-
-- Minimum 15 notable GitHub commits reflecting meaningful development milestones.
-- Follows proper feature-based commit structure.
 
 ---
 

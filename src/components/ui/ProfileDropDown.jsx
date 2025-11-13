@@ -7,6 +7,7 @@ import {
   Settings,
   LogOut,
   TrendingUp,
+  ChartNoAxesCombined,
   ChevronDown,
   Shield,
   HelpCircle,
@@ -25,9 +26,15 @@ const ProfileDropDown = (props) => {
       description: "View your profile",
     },
     {
+      title: "My Habits",
+      path: "/my-habits",
+      icon: TrendingUp,
+      description: "View progress dashboard",
+    },
+    {
       title: "Progress Analytics",
       path: "/analytics",
-      icon: TrendingUp,
+      icon: ChartNoAxesCombined,
       description: "View progress dashboard",
     },
     {

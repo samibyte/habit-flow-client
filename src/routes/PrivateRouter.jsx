@@ -16,7 +16,9 @@ const PrivateRouter = ({ children }) => {
           ? "Please login to view your habits"
           : location.pathname === "/add-habits"
             ? "Please login to add habits"
-            : "Please login to view details";
+            : location.pathname === "/analytics"
+              ? "Please login to view analytics"
+              : "Please login to view details";
 
       toast.error(msg, {
         position: "top-right",

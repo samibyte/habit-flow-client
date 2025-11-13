@@ -5,6 +5,7 @@ import {
   Home,
   Plus,
   TrendingUp,
+  ChartNoAxesCombined,
   Compass,
   Settings,
   LogOut,
@@ -27,6 +28,7 @@ const Navbar = () => {
     { title: "Browse Habits", path: "/habits", icon: Compass },
     { title: "My Habits", path: "/my-habits", icon: TrendingUp },
     { title: "Add Habit", path: "/add-habits", icon: Plus },
+    { title: "Analytics", path: "/analytics", icon: ChartNoAxesCombined },
   ];
 
   const userMenu = [
