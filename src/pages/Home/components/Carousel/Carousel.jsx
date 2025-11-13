@@ -1,12 +1,104 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import "./keen-styles.css";
 import Arrow from "./Arrow";
 
+import runnerStart from "./../../../../assets/illustrations/runner-start.svg";
+import activityTracker from "./../../../../assets/illustrations/activity-tracker.svg";
+import community from "./../../../../assets/illustrations/community.svg";
+import completing from "./../../../../assets/illustrations/completing.svg";
+import motivation from "./../../../../assets/illustrations/motivation.svg";
+import analyticsSetup from "./../../../../assets/illustrations/analytics-setup.svg";
+import timeManagement from "./../../../../assets/illustrations/time-management.svg";
+import contentStructure from "./../../../../assets/illustrations/content-structure.svg";
+
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
+
+  const slides = [
+    {
+      image: runnerStart,
+      title: "Start Your Journey",
+      description:
+        "Begin building lasting habits with our intuitive daily tracker",
+    },
+    {
+      image: activityTracker,
+      title: "Track Your Progress",
+      description: "Monitor streaks and see your consistency grow over time",
+    },
+    {
+      image: community,
+      title: "Grow Together",
+      description: "Connect with like-minded people and share your progress",
+    },
+    {
+      image: motivation,
+      title: "Stay Inspired",
+      description: "Get personalized reminders and celebrate every achievement",
+    },
+    {
+      image: contentStructure,
+      title: "Custom Categories",
+      description: "Organize habits by morning, work, fitness, and more",
+    },
+    {
+      image: completing,
+      title: "Achieve Completion",
+      description: "Mark habits as done and build your success streak",
+    },
+    {
+      image: timeManagement,
+      title: "Smart Time Management",
+      description: "Plan your habits efficiently and make the most of your day",
+    },
+    {
+      image: analyticsSetup,
+      title: "Visual Analytics",
+      description: "See your progress with beautiful charts and insights",
+    },
+  ];
+
+  const autoPlayPlugin = useCallback((slider) => {
+    let timeout;
+    let mouseOver = false;
+
+    function clearNextTimeout() {
+      clearTimeout(timeout);
+    }
+
+    function nextTimeout() {
+      clearTimeout(timeout);
+      if (mouseOver) return;
+      timeout = setTimeout(() => {
+        slider.next();
+      }, 3000);
+    }
+
+    slider.on("created", () => {
+      nextTimeout();
+    });
+
+    slider.on("dragStarted", clearNextTimeout);
+    slider.on("animationEnded", nextTimeout);
+    slider.on("updated", nextTimeout);
+
+    slider.container.addEventListener("mouseover", () => {
+      mouseOver = true;
+      clearNextTimeout();
+    });
+
+    slider.container.addEventListener("mouseout", () => {
+      mouseOver = false;
+      nextTimeout();
+    });
+
+    return () => {
+      clearNextTimeout();
+    };
+  }, []);
 
   const [sliderRef, instanceRef] = useKeenSlider(
     {
@@ -19,52 +111,15 @@ const Carousel = () => {
         setLoaded(true);
       },
     },
-    [
-      (slider) => {
-        let timeout;
-        let mouseOver = false;
-
-        function clearNextTimeout() {
-          clearTimeout(timeout);
-        }
-
-        function nextTimeout() {
-          clearTimeout(timeout);
-          if (mouseOver) return;
-          timeout = setTimeout(() => {
-            slider.next();
-          }, 3000);
-        }
-
-        slider.on("created", () => {
-          nextTimeout();
-        });
-
-        slider.on("dragStarted", clearNextTimeout);
-        slider.on("animationEnded", nextTimeout);
-        slider.on("updated", nextTimeout);
-
-        slider.container.addEventListener("mouseover", () => {
-          mouseOver = true;
-          clearNextTimeout();
-        });
-
-        slider.container.addEventListener("mouseout", () => {
-          mouseOver = false;
-          nextTimeout();
-        });
-
-        return () => {
-          clearNextTimeout();
-        };
-      },
-    ],
+    [autoPlayPlugin],
   );
 
   useEffect(() => {
+    const currentInstance = instanceRef.current;
+
     return () => {
-      if (instanceRef.current) {
-        instanceRef.current.destroy();
+      if (currentInstance) {
+        currentInstance.destroy();
       }
     };
   }, [instanceRef]);
@@ -73,44 +128,23 @@ const Carousel = () => {
     <>
       <div className="navigation-wrapper">
         <div ref={sliderRef} className="keen-slider">
-          <div className="keen-slider__slide number-slide1">
-            <div className="slide-content">
-              <h3>Build Better Habits</h3>
-              <p>
-                Start your journey to a better you with daily habit tracking
-              </p>
+          {slides.map((slide, index) => (
+            <div
+              key={index}
+              className={`keen-slider__slide number-slide${index + 1}`}
+            >
+              <div className="slide-content">
+                <div className="text-container">
+                  <h3>{slide.title}</h3>
+                  <p>{slide.description}</p>
+                </div>
+                <div
+                  className="image-container"
+                  style={{ backgroundImage: `url(${slide.image})` }}
+                />
+              </div>
             </div>
-          </div>
-          <div className="keen-slider__slide number-slide2">
-            <div className="slide-content">
-              <h3>Track Your Progress</h3>
-              <p>Monitor streaks and see your consistency grow over time</p>
-            </div>
-          </div>
-          <div className="keen-slider__slide number-slide3">
-            <div className="slide-content">
-              <h3>Join Our Community</h3>
-              <p>Get inspired by others and share your success stories</p>
-            </div>
-          </div>
-          <div className="keen-slider__slide number-slide4">
-            <div className="slide-content">
-              <h3>Stay Motivated</h3>
-              <p>Receive reminders and celebrate your milestones</p>
-            </div>
-          </div>
-          <div className="keen-slider__slide number-slide5">
-            <div className="slide-content">
-              <h3>Custom Categories</h3>
-              <p>Organize habits by morning, work, fitness, and more</p>
-            </div>
-          </div>
-          <div className="keen-slider__slide number-slide6">
-            <div className="slide-content">
-              <h3>Visual Analytics</h3>
-              <p>See your progress with beautiful charts and insights</p>
-            </div>
-          </div>
+          ))}
         </div>
 
         {loaded && instanceRef.current && (
