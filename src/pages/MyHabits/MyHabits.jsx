@@ -186,7 +186,7 @@ const MyHabits = () => {
         `/api/v1/habits/${updatedHabit._id}`,
         updateData,
       );
-      console.log(data);
+      // console.log(data);
 
       if (!data?.habit) {
         throw new Error("Invalid response from server");
@@ -250,6 +250,7 @@ const MyHabits = () => {
 
   return (
     <div className="min-h-screen bg-base-100 pt-20">
+      <title>Habit Flow | My Habits</title>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
@@ -302,7 +303,6 @@ const MyHabits = () => {
           setSortBy={setSortBy}
           viewMode={viewMode}
           setViewMode={setViewMode}
-          onClearAll={() => console.log("All filters cleared")}
         />
 
         {/* Results header */}

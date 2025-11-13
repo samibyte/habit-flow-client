@@ -137,7 +137,7 @@ const SignUp = () => {
       toast.success("Account created successfully!");
       navigate("/");
     } catch (err) {
-      console.log(err);
+      console.error(err);
       if (err.code === "auth/email-already-in-use") {
         toast.error("This email is already registered.");
       } else if (err.code === "auth/invalid-email") {
@@ -177,6 +177,7 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen bg-base-100 flex items-center justify-center p-4 py-8">
+      <title>Habit Flow | Sign Up</title>
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-90 h-90 bg-primary/10 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl"></div>

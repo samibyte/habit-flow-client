@@ -7,6 +7,7 @@ import CallToAction from "./components/CallToAction";
 const Home = () => {
   return (
     <div className="min-h-screen bg-base-100">
+      <title>Habit Flow</title>
       <section className="max-w-11/12 py-10 mt-30 mx-auto">
         <Carousel />
       </section>

@@ -1,16 +1,170 @@
-# React + Vite
+# Habit Flow Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **client-side application** for the Habit Flow web app — a modern, responsive, and interactive **habit tracking platform** that allows users to create, manage, and track daily habits, build streaks, and monitor productivity. This client implements all core requirements and advanced features, including an analytics dashboard and habit insights.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **Live Site**
 
-## React Compiler
+Access the deployed client here: `https://<your-netlify-or-vercel-url>`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## **Features**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### **Core Features**
+
+- **User Authentication**
+  - Email/password login & registration
+  - Google login
+  - Protected routes for private habit operations
+
+- **CRUD Operations for Habits**
+  - Add, update, delete habits
+  - Mark habits as complete
+  - Real-time streak calculation
+
+- **Home Page**
+  - Hero banner/slider with typewriter and animation effects
+  - Featured habits section (dynamic, latest 6 public habits)
+  - Why build habits section with benefits cards
+  - Extra custom sections with animations
+
+- **Public Habits**
+  - Browse all public habits
+  - Search by title or keyword
+  - Category-based filtering (Morning, Work, Fitness, Evening, Study)
+
+- **Habit Details**
+  - Detailed view of habits including description, category, progress, streak badge, and creator info
+
+### **Advanced Features**
+
+- **Analytics Dashboard**
+  - Weekly progress charts using Recharts
+  - Streak growth visualization
+
+- **UI & UX Enhancements**
+  - Framer Motion animations for sections and interactions
+  - Lottie animations for task completions
+  - React tooltips for habit details
+  - SweetAlert2 / React Hot Toast for notifications
+
+- **Theme Support**
+  - Light/Dark mode toggle
+
+- **Responsive Design**
+  - Mobile, tablet, and desktop optimized
+  - Consistent typography, spacing, and grid layouts
+
+- **Image Upload & Display**
+  - Optional image upload for habits (ImgBB integration)
+
+- **Performance & Optimizations**
+  - Axios for API requests
+  - Optimized React rendering
+  - Keen-slider for smooth hero carousel
+
+---
+
+## **Folder Structure**
+
+```
+src/
+ ├─ components/      # Reusable UI components
+ ├─ hooks/           # Custom React hooks
+ ├─ pages/           # Page components (Home, AddHabit, MyHabits, Login, Register, Analytics)
+ ├─ services/        # API calls and client services
+ ├─ utils/           # Helper functions
+ ├─ App.jsx          # Main app component with router
+ └─ main.jsx         # Entry point
+```
+
+---
+
+## **Installation & Development**
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/<your-username>/habit-flow-client.git
+cd habit-flow-client
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Create a `.env` file with your Firebase config and API base URL:
+
+```env
+VITE_API_URL=<your-server-api-base-url>
+VITE_FIREBASE_API_KEY=...
+VITE_FIREBASE_AUTH_DOMAIN=...
+VITE_FIREBASE_PROJECT_ID=...
+```
+
+4. Start development server:
+
+```bash
+npm run dev
+```
+
+5. Build for production:
+
+```bash
+npm run build
+```
+
+6. Preview production build:
+
+```bash
+npm run preview
+```
+
+---
+
+## **Technologies Used**
+
+- **React 19** – Frontend library
+- **Vite** – Development & build tool
+- **TailwindCSS & DaisyUI** – Styling and UI components
+- **Firebase** – Authentication & user management
+- **Axios** – API calls
+- **Framer Motion & Lottie** – Animations
+- **React Hot Toast & SweetAlert2** – Notifications
+- **Recharts** – Analytics charts
+- **Keen Slider** – Hero slider
+- **Lucide-react** – Icons
+- **React Router v7** – Routing
+
+---
+
+## **Notable Features / Highlights**
+
+- Fully functional SPA with **persistent login** on refresh
+- Custom animations and interactive UI
+- Advanced analytics dashboard
+- Category-based search and filtering
+- Real-time habit streak updates
+- Responsive and polished design
+- Toast-based notifications for all actions
+
+---
+
+## **Contribution & Commits**
+
+- Minimum 15 notable GitHub commits reflecting meaningful development milestones.
+- Follows proper feature-based commit structure.
+
+---
+
+## **License**
+
+MIT License
+
+---
+
+**Happy Habit Building!**

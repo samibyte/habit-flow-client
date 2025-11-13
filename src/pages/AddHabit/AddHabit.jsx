@@ -180,6 +180,7 @@ const AddHabit = () => {
 
   return (
     <div className="min-h-screen bg-base-100 pt-20">
+      <title>Habit Flow | Add Habit</title>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
         <motion.div

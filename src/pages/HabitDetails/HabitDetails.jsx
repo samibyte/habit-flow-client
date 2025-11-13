@@ -208,6 +208,7 @@ const HabitDetails = () => {
 
   return (
     <div className="min-h-screen bg-base-100 pt-20">
+      <title>Habit Flow | Habit Details</title>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

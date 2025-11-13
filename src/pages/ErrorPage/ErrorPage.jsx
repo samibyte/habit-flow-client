@@ -11,6 +11,7 @@ const ErrorPage = () => {
 
   return (
     <div className="min-h-screen bg-base-100 pt-20">
+      <title>Error Flow</title>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

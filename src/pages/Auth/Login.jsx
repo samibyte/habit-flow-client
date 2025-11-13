@@ -33,7 +33,7 @@ const Login = () => {
       toast.success("Login successful");
       navigate(location.state?.from || "/");
     } catch (err) {
-      console.log(err);
+      console.error(err);
       if (err.code === "auth/invalid-credential") {
         toast.error("Invalid email or password");
       } else if (err.code === "auth/user-not-found") {
@@ -66,6 +66,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-base-100 flex items-center justify-center p-4 py-8">
+      <title>Habit Flow | Login</title>
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>

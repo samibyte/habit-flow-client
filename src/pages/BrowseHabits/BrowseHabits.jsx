@@ -68,6 +68,7 @@ const BrowseHabits = () => {
 
   return (
     <div className="min-h-screen bg-base-100 pt-20">
+      <title>Habit Flow | Browse Habits</title>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
         <div className="text-center mb-8">
@@ -99,8 +100,6 @@ const BrowseHabits = () => {
           setSortBy={setSortBy}
           viewMode={viewMode}
           setViewMode={setViewMode}
-          // Optional callback
-          onClearAll={() => console.log("All filters cleared")}
         />
 
         {/* Results header */}

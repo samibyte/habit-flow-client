@@ -10,7 +10,6 @@ const FilterControls = ({
   setSortBy,
   viewMode,
   setViewMode,
-  onClearAll,
 }) => {
   const toggleCategory = (category) => {
     setSelectedCategories((prev) =>
@@ -23,7 +22,6 @@ const FilterControls = ({
   const clearAllFilters = () => {
     setSearchTerm("");
     setSelectedCategories([]);
-    onClearAll?.();
   };
   const categories = ["Morning", "Work", "Fitness", "Evening", "Study"];
   const sortOptions = [
