@@ -20,31 +20,31 @@ const ProfileDropDown = (props) => {
   const navigation = [
     {
       title: "My Profile",
-      path: "/profile",
+      path: "#",
       icon: User,
       description: "View your profile",
     },
     {
-      title: "My Habits",
-      path: "/my-habits",
+      title: "Progress Analytics",
+      path: "/analytics",
       icon: TrendingUp,
-      description: "Manage your habits",
+      description: "View progress dashboard",
     },
     {
       title: "Settings",
-      path: "/settings",
+      path: "#",
       icon: Settings,
       description: "Account settings",
     },
     {
       title: "Help & Support",
-      path: "/help",
+      path: "#",
       icon: HelpCircle,
       description: "Get help",
     },
     {
       title: "Privacy",
-      path: "/privacy",
+      path: "#",
       icon: Shield,
       description: "Privacy settings",
     },

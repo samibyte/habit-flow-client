@@ -1,4 +1,4 @@
-import { use, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Navigate, useLocation } from "react-router";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
@@ -18,7 +18,9 @@ const PrivateRouter = ({ children }) => {
             ? "Please login to add habits"
             : "Please login to view details";
 
-      toast.error(msg);
+      toast.error(msg, {
+        position: "top-right",
+      });
       lastToastPath.current = location.pathname;
     }
   }, [user, loading, location.pathname]);

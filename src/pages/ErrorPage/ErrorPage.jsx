@@ -68,7 +68,7 @@ const ErrorPage = () => {
           >
             <Link
               to="/"
-              className="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-primary-content font-semibold rounded-xl hover:shadow-xl transition-all duration-300 btn-magnetic"
+              className="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-primary-content font-semibold rounded-xl hover:shadow-xl transition-all duration-300"
             >
               <Home className="w-5 h-5" />
               Back to Homepage
@@ -76,7 +76,7 @@ const ErrorPage = () => {
 
             <button
               onClick={() => window.history.back()}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-base-300 text-base-content font-semibold rounded-xl hover:bg-base-400 transition-all duration-300 btn-magnetic"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-base-300 text-base-content font-semibold rounded-xl hover:bg-base-400 transition-all duration-300"
             >
               <ArrowLeft className="w-5 h-5" />
               Go Back
@@ -123,7 +123,7 @@ const ErrorPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="mt-12 p-6 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl border border-primary/20 max-w-2xl mx-auto"
+            className="mt-12 p-6 bg-linear-to-r from-primary/5 to-secondary/5 rounded-2xl border border-primary/20 max-w-2xl mx-auto"
           >
             <p className="text-base-content/80 text-lg italic mb-2">
               "The only bad workout is the one that didn't happen. The only bad

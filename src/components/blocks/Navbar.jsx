@@ -30,8 +30,8 @@ const Navbar = () => {
   ];
 
   const userMenu = [
-    { title: "Profile", path: "/profile", icon: User },
-    { title: "Settings", path: "/settings", icon: Settings },
+    { title: "Profile", path: "#", icon: User },
+    { title: "Settings", path: "#", icon: Settings },
   ];
 
   useEffect(() => {

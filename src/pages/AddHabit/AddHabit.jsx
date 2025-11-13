@@ -145,9 +145,9 @@ const AddHabit = () => {
       toast.success(
         <div className="flex items-center gap-2">
           <Sparkles className="w-5 h-5" />
-          <span>Habit created successfully! 🎉</span>
+          <span>{response.data?.message || "Habit created successfully!"}</span>
         </div>,
-        { duration: 4000 },
+        { duration: 3000 },
       );
 
       // Reset form

@@ -89,7 +89,7 @@ const PublicHabitCard = ({ habit }) => {
           </p>
 
           {/* Goal text */}
-          <div className="h-4">
+          <div className="h-4 mb-10">
             {habit.goal && habit.goal !== habit.description && (
               <div className="flex items-start gap-2 p-3 bg-base-300/40 rounded-lg">
                 <div className="w-1 h-1 rounded-full bg-primary mt-2 shrink-0"></div>
