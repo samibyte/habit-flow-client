@@ -17,7 +17,8 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile, signInWithGoogle } = useAuth();
+  const { createUser, updateUserProfile, setLoading, signInWithGoogle } =
+    useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -103,6 +104,7 @@ const SignUp = () => {
       setImagePreview("");
     } finally {
       setUploading(false);
+      setLoading(false);
     }
   };
 
