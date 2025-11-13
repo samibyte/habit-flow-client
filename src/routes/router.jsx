@@ -1,15 +1,16 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home/Home";
-import SignUp from "../pages/SignUp";
-import Login from "../pages/Login";
-import ForgotPassword from "../pages/ForgotPassword";
+import SignUp from "../pages/Auth/SignUp";
+import Login from "../pages/Auth/Login";
+import ForgotPassword from "../pages/Auth/ForgotPassword";
 import MyHabits from "../pages/MyHabits/MyHabits";
-import AddHabit from "../pages/AddHabit";
+import AddHabit from "../pages/AddHabit/AddHabit";
 import HabitDetails from "../pages/HabitDetails/HabitDetails";
 import BrowseHabits from "../pages/BrowseHabits/BrowseHabits";
 import PrivateRouter from "./PrivateRouter";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AnalyticsDashboard from "../pages/AnalyticsDashboard/AnalyticsDashboard";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <HabitDetails />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/analytics",
+        element: (
+          <PrivateRouter>
+            <AnalyticsDashboard />
           </PrivateRouter>
         ),
       },
