@@ -81,7 +81,10 @@ const ProfileDropDown = (props) => {
       >
         <div className="relative">
           <img
-            src={user?.photoURL || "/default-avatar.png"}
+            src={
+              user?.photoURL ||
+              `https://avatar.iran.liara.run/username?username=${user.displayName}+`
+            }
             alt={user?.displayName || "User"}
             className="w-9 h-9 rounded-full border-2 border-primary/20 object-cover transition-all duration-300 group-hover:border-primary/40"
           />
@@ -116,7 +119,10 @@ const ProfileDropDown = (props) => {
         <div className="p-4 border-b border-base-300/50">
           <div className="flex items-center gap-3">
             <img
-              src={user?.photoURL || "/default-avatar.png"}
+              src={
+                user?.photoURL ||
+                `https://avatar.iran.liara.run/username?username=${user.displayName}+`
+              }
               alt={user?.displayName || "User"}
               className="w-12 h-12 rounded-xl border-2 border-primary/20 object-cover"
             />

@@ -214,7 +214,10 @@ const Navbar = () => {
               <div className="flex items-center gap-4">
                 <div className="relative">
                   <img
-                    src={user.photoURL || "/default-avatar.png"}
+                    src={
+                      user.photoURL ||
+                      `https://avatar.iran.liara.run/username?username=${user.displayName}+`
+                    }
                     alt={user.displayName || "User"}
                     className="w-12 h-12 rounded-xl border-2 border-primary/20 object-cover"
                   />
