@@ -11,6 +11,7 @@ import BrowseHabits from "../pages/BrowseHabits/BrowseHabits";
 import PrivateRouter from "./PrivateRouter";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AnalyticsDashboard from "../pages/AnalyticsDashboard/AnalyticsDashboard";
+import { Dashboard } from "../layouts/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -32,30 +33,7 @@ const router = createBrowserRouter([
             <HabitDetails />
         ),
       },
-      {
-        path: "/analytics",
-        element: (
-          <PrivateRouter>
-            <AnalyticsDashboard />
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "/my-habits",
-        element: (
-          <PrivateRouter>
-            <MyHabits />
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "/add-habits",
-        element: (
-          <PrivateRouter>
-            <AddHabit />
-          </PrivateRouter>
-        ),
-      },
+      
       {
         path: "/sign-up",
         element: <SignUp />,
@@ -69,6 +47,34 @@ const router = createBrowserRouter([
         element: <ForgotPassword />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+          { index: true,
+            element: 
+            <PrivateRouter>
+              <AnalyticsDashboard />,
+            </PrivateRouter>
+          },
+          {
+            path: "my-habits",
+            element: (
+              <PrivateRouter>
+                <MyHabits />
+              </PrivateRouter>
+            ),
+          },
+          {
+            path: "add-habits",
+            element: (
+              <PrivateRouter>
+                <AddHabit />
+              </PrivateRouter>
+            ),
+          }
+        ]
   },
 ]);
 

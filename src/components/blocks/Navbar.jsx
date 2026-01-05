@@ -26,9 +26,7 @@ const Navbar = () => {
   const navigation = [
     { title: "Home", path: "/", icon: Home },
     { title: "Browse Habits", path: "/habits", icon: Compass },
-    { title: "My Habits", path: "/my-habits", icon: TrendingUp },
-    { title: "Add Habit", path: "/add-habits", icon: Plus },
-    { title: "Analytics", path: "/analytics", icon: ChartNoAxesCombined },
+    { title: "Dashboard", path: "/dashboard", icon: TrendingUp },
   ];
 
   const userMenu = [

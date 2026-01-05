@@ -7,6 +7,8 @@ font-montserrat {
   font-family: "Montserrat", sans-serif;
 }
 @import "tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
 @plugin "daisyui" {
   themes:
     habitflow-light --default,
