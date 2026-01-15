@@ -26,10 +26,15 @@ const Navbar = () => {
   const navigation = [
     { title: "Home", path: "/", icon: Home },
     { title: "Browse Habits", path: "/habits", icon: Compass },
-    { title: "My Habits", path: "/my-habits", icon: TrendingUp },
-    { title: "Add Habit", path: "/add-habits", icon: Plus },
-    { title: "Analytics", path: "/analytics", icon: ChartNoAxesCombined },
+    { title: "About Us", path: "/about-us", icon: Compass },
   ];
+  if (user) {
+    navigation.push(
+      { title: "My Habits", path: "/my-habits", icon: TrendingUp },
+      { title: "Add Habit", path: "/add-habits", icon: Plus },
+      { title: "Analytics", path: "/analytics", icon: ChartNoAxesCombined },
+    );
+  }
 
   const userMenu = [
     { title: "Profile", path: "#", icon: User },
