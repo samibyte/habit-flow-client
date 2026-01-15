@@ -11,6 +11,7 @@ import BrowseHabits from "../pages/BrowseHabits/BrowseHabits";
 import PrivateRouter from "./PrivateRouter";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AnalyticsDashboard from "../pages/AnalyticsDashboard/AnalyticsDashboard";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/habits",
         element: <BrowseHabits />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
         path: "/habit-details/:id",
