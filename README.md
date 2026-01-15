@@ -1,4 +1,4 @@
-## Habit Flow Client
+# Habit Flow Client
 
 This is the **client-side application** for the Habit Flow web app — a modern, responsive, and interactive **habit tracking platform** that allows users to create, manage, and track daily habits, build streaks, and monitor productivity. This client implements all core requirements and advanced features, including an analytics dashboard and habit insights.
 
