@@ -3,6 +3,8 @@ import WhyBuildHabits from "./components/WhyBuildHabits";
 import LatestHabits from "./components/LatestHabits";
 import HabitRoadmap from "./components/HabitRoadmap";
 import CallToAction from "./components/CallToAction";
+import FAQSection from "./components/FAQ";
+import Testimonial from "./components/Testimonial";
 
 const Home = () => {
   return (
@@ -22,6 +24,14 @@ const Home = () => {
 
       <section>
         <HabitRoadmap />
+      </section>
+
+      <section>
+        <Testimonial />
+      </section>
+
+      <section>
+        <FAQSection />
       </section>
       <section>
         <CallToAction />

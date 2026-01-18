@@ -15,7 +15,7 @@ const CallToAction = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6 }}
-      className="relative py-16"
+      className="relative py-30"
     >
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

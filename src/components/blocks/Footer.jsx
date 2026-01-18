@@ -20,11 +20,19 @@ const Footer = () => {
         href: "/habits",
         name: "Browse Habits",
       },
-      {
-        href: "#",
-        name: "Features",
-      },
     ],
+  };
+
+  const [value, setValue] = useState(null);
+
+  const handleSubscription = (e) => {
+    e.preventDefault();
+    if (value && value.includes("@")) {
+      toast.success("Subscribed successfully!");
+      setValue("");
+    } else {
+      toast.error("Please enter a valid email address.");
+    }
   };
 
   return (
@@ -76,7 +84,10 @@ const Footer = () => {
                   className="w-full pl-10 pr-4 py-3 bg-base-100 border border-base-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 text-base-content placeholder-base-content/40"
                 />
               </div>
-              <button className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-102 ">
+              <button
+                onClick={handleSubscription}
+                className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-102 "
+              >
                 Subscribe
               </button>
             </form>
@@ -88,10 +99,10 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
           >
-            <h4 className="text-base-content font-semibold mb-4 text-sm uppercase tracking-wider">
-              lable
+            <h4 className="text-base-content text-center font-semibold mb-4 text-sm uppercase tracking-wider">
+              Quick links
             </h4>
-            <ul className="border flex space-between">
+            <ul className="flex justify-center gap-6">
               {footerNavs.items.map((item, itemIndex) => (
                 <li key={itemIndex}>
                   <Link
