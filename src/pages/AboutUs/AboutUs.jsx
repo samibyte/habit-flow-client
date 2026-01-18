@@ -330,7 +330,7 @@ const AboutUs = () => {
                   <Rocket className="w-5 h-5" />
                 </Link>
                 <Link
-                  to="/my-habits"
+                  to="/dashboard/my-habits"
                   className="px-8 py-4 bg-white/20 text-white rounded-lg font-bold hover:bg-white/30 transition-colors border border-white/30"
                 >
                   Explore Features

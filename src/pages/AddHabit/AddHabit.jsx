@@ -164,7 +164,7 @@ const AddHabit = () => {
       });
 
       setTimeout(() => {
-        navigate("/my-habits");
+        navigate("/dashboard/my-habits");
       }, 1500);
     } catch (err) {
       console.error(err);

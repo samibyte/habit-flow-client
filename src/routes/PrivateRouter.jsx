@@ -12,11 +12,11 @@ const PrivateRouter = ({ children }) => {
   useEffect(() => {
     if (!loading && !user && lastToastPath.current !== location.pathname) {
       const msg =
-        location.pathname === "/my-habits"
+        location.pathname === "/dashboard/my-habits"
           ? "Please login to view your habits"
-          : location.pathname === "/add-habits"
+          : location.pathname === "/dashboard/add-habits"
             ? "Please login to add habits"
-            : location.pathname === "/analytics"
+            : location.pathname === "/dashboard"
               ? "Please login to view analytics"
               : "Please login first";
 

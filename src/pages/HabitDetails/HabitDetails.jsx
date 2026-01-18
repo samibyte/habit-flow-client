@@ -41,7 +41,7 @@ const HabitDetails = () => {
       } catch (err) {
         console.error(err);
         toast.error("Failed to load habit details");
-        navigate(location.state?.from || "/my-habits");
+        navigate(location.state?.from || "/dashboard/my-habits");
       } finally {
         setLoading(false);
       }
@@ -216,7 +216,7 @@ const HabitDetails = () => {
           className="flex items-center justify-between mb-8"
         >
           <Link
-            to={location.state?.from || "/my-habits"}
+            to={location.state?.from || "/dashboard/my-habits"}
             className="inline-flex items-center gap-2 px-4 py-2 bg-base-300 text-base-content rounded-lg hover:bg-base-400 transition-colors "
           >
             <ArrowLeft className="w-4 h-4" />

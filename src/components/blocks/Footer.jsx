@@ -8,11 +8,11 @@ const Footer = () => {
       label: "Product",
       items: [
         {
-          href: "/add-habits",
+          href: "/dashboard/add-habits",
           name: "Add Habit",
         },
         {
-          href: "/my-habits",
+          href: "/dashboard/my-habits",
           name: "My Habits",
         },
         {
@@ -20,8 +20,8 @@ const Footer = () => {
           name: "Browse Habits",
         },
         {
-          href: "#",
-          name: "Features",
+          href: "/dashboard/my-profile",
+          name: "My Profile",
         },
       ],
     },

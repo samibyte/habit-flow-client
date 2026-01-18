@@ -266,7 +266,7 @@ const MyHabits = () => {
           <div className="flex items-center gap-3">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                to="/analytics"
+                to="/dashboard"
                 className="inline-flex items-center gap-2 px-4 py-2.5 bg-secondary text-secondary-content font-medium rounded-lg hover:shadow-lg transition-all duration-200"
               >
                 <BarChart3 className="w-4 h-4" />
@@ -276,7 +276,7 @@ const MyHabits = () => {
 
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                to="/add-habits"
+                to="/dashboard/add-habits"
                 className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 "
               >
                 <Plus className="w-5 h-5" />

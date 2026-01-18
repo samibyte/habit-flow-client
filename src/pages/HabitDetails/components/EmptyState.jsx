@@ -6,7 +6,7 @@ const EmptyState = () => {
           Habit Not Found
         </h1>
         <Link
-          to={location.state?.from || "/my-habits"}
+          to={location.state?.from || "/dashboard/my-habits"}
           className="btn btn-primary"
         >
           Back to My Habits

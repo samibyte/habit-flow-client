@@ -30,7 +30,7 @@ const ProfileDropDown = (props) => {
     },
     {
       title: "Progress Analytics",
-      path: "/dashboard/analytics",
+      path: "/dashboard",
       icon: ChartNoAxesCombined,
       description: "View progress dashboard",
     },

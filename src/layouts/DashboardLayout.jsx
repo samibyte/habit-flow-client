@@ -12,9 +12,9 @@ import {
   HiLogout,
   HiHome
 } from "react-icons/hi";
-import { Link, Outlet } from "react-router";
+import { Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
-import {motion, AnimatePresence} from "motion/react";
+import {motion} from "motion/react";
 import ProfileDropDown from "../components/ui/ProfileDropDown";
 import ThemeSwitch from "../components/ui/ThemeSwitch";
 import { useState } from "react";
@@ -26,10 +26,9 @@ export function Dashboard() {
 
   return (
 
-
     <div className="flex">
       {/* Sidebar */}
-      <div className="fixed flex w-full">
+      <div className="fixed flex">
         <Sidebar
           className={`
             fixed h-screen z-40

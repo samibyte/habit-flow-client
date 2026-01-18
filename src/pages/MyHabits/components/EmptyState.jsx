@@ -34,7 +34,7 @@ const EmptyState = ({ habitsLength, searchTerm, selectedCategory }) => {
       {habitsLength === 0 ? (
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <Link
-            to="/add-habits"
+            to="/dashboard/add-habits"
             className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200"
           >
             <Plus className="w-5 h-5" />
@@ -55,7 +55,7 @@ const EmptyState = ({ habitsLength, searchTerm, selectedCategory }) => {
           )}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
-              to="/add-habits"
+              to="/dashboard/add-habits"
               className="inline-flex items-center gap-2 px-4 py-2 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200"
             >
               <Plus className="w-5 h-5" />
