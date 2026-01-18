@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { Sparkles } from "lucide-react";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Footer = () => {
   const footerNavs = [
@@ -90,6 +92,8 @@ const Footer = () => {
     },
   ];
 
+  const [value, setValue] = useState(null);
+
   return (
     <footer className="bg-base-200 border-t border-base-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -133,10 +137,19 @@ const Footer = () => {
                   autoComplete="email"
                   type="email"
                   placeholder="Enter your email"
+                  required
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-base-100 border border-base-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 text-base-content placeholder-base-content/40"
                 />
               </div>
-              <button className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-102 ">
+              <button
+                onClick={() => {
+                  toast.success("Subscription successful!");
+                  setValue("");
+                }}
+                type="button"             
+              className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-102 ">
                 Subscribe
               </button>
             </form>
