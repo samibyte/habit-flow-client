@@ -3,92 +3,27 @@ import { motion } from "motion/react";
 import { Sparkles } from "lucide-react";
 
 const Footer = () => {
-  const footerNavs = [
-    {
-      label: "Product",
-      items: [
-        {
-          href: "/add-habits",
-          name: "Add Habit",
-        },
-        {
-          href: "/my-habits",
-          name: "My Habits",
-        },
-        {
-          href: "/habits",
-          name: "Browse Habits",
-        },
-        {
-          href: "#",
-          name: "Features",
-        },
-      ],
-    },
-    {
-      label: "Support",
-      items: [
-        {
-          href: "#",
-          name: "Help Center",
-        },
-        {
-          href: "#",
-          name: "Contact Us",
-        },
-        {
-          href: "#",
-          name: "Community",
-        },
-        {
-          href: "#",
-          name: "FAQ",
-        },
-      ],
-    },
-    {
-      label: "Company",
-      items: [
-        {
-          href: "#",
-          name: "About Us",
-        },
-        {
-          href: "#",
-          name: "Privacy Policy",
-        },
-        {
-          href: "#",
-          name: "Terms of Service",
-        },
-        {
-          href: "#",
-          name: "Careers",
-        },
-      ],
-    },
-    {
-      label: "Connect",
-      items: [
-        {
-          href: "#",
-          name: "Blog",
-        },
-        {
-          href: "#",
-          name: "Newsletter",
-        },
-        {
-          href: "#",
-          name: "Partners",
-        },
-        {
-          href: "#",
-          name: "Success Stories",
-        },
-      ],
-    },
-  ];
+  const footerNavs = {
+    label: "Product",
+    items: [
+      {
+        href: "/add-habits",
+        name: "Add Habit",
+      },
+      {
+        href: "/my-habits",
+        name: "My Habits",
+      },
+      {
+        href: "/habits",
+        name: "Browse Habits",
+      },
+      {
+        href: "#",
+        name: "Features",
+      },
+    ],
+  };
 
   return (
     <footer className="bg-base-200 border-t border-base-300">
@@ -143,31 +78,27 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-          {footerNavs.map((section, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <h4 className="text-base-content font-semibold mb-4 text-sm uppercase tracking-wider">
-                {section.label}
-              </h4>
-              <ul className="space-y-3">
-                {section.items.map((item, itemIndex) => (
-                  <li key={itemIndex}>
-                    <Link
-                      to={item.href}
-                      className="text-base-content/70 hover:text-primary transition-all duration-200 text-sm hover:translate-x-1 transform inline-block"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+        <div className=" mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            <h4 className="text-base-content font-semibold mb-4 text-sm uppercase tracking-wider">
+              lable
+            </h4>
+            <ul className="border flex space-between">
+              {footerNavs.items.map((item, itemIndex) => (
+                <li key={itemIndex}>
+                  <Link
+                    to={item.href}
+                    className="text-base-content/70 hover:text-primary transition-all duration-200 text-sm hover:translate-x-1 transform inline-block"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
 
         <div className="pt-8 border-t border-base-300 flex flex-col md:flex-row justify-between items-center gap-6">
