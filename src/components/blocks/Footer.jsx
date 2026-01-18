@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { Sparkles } from "lucide-react";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Footer = () => {
   const footerNavs = {
@@ -68,6 +70,9 @@ const Footer = () => {
                   autoComplete="email"
                   type="email"
                   placeholder="Enter your email"
+                  required
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-base-100 border border-base-300 rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 text-base-content placeholder-base-content/40"
                 />
               </div>

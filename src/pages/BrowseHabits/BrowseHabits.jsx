@@ -82,7 +82,7 @@ const BrowseHabits = () => {
 
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
-              to="/add-habits"
+              to="/dashboard/add-habits"
               className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-primary-content font-semibold rounded-lg hover:shadow-lg transition-all duration-200 "
             >
               <Plus className="w-4 h-4" />
@@ -175,7 +175,7 @@ const BrowseHabits = () => {
                   )}
                   {!searchTerm && selectedCategories.length === 0 && (
                     <Link
-                      to="/add-habits"
+                      to="/dashboard/add-habits"
                       className="inline-block mt-2 text-primary hover:text-primary/80 transition-colors"
                     >
                       Create first habit

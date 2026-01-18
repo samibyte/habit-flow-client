@@ -106,7 +106,7 @@ const LatestHabits = () => {
               community!
             </p>
             <Link
-              to="/add-habits"
+              to="/dashboard/add-habits"
               className="px-6 py-3 gradient-primary text-primary-content rounded-lg hover:shadow-lg transition-all font-medium"
             >
               Create First Habit

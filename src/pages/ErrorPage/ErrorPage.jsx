@@ -5,7 +5,7 @@ import { Home, ArrowLeft, Search, AlertCircle, Rocket } from "lucide-react";
 const ErrorPage = () => {
   const quickLinks = [
     { path: "/", label: "Home", icon: Home },
-    { path: "/my-habits", label: "My Habits", icon: Rocket },
+    { path: "/dashboard/my-habits", label: "My Habits", icon: Rocket },
     { path: "/add-habits", label: "Add Habit", icon: Search },
   ];
 
