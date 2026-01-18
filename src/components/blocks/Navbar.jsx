@@ -30,9 +30,7 @@ const Navbar = () => {
   ];
   if (user) {
     navigation.push(
-      { title: "My Habits", path: "/my-habits", icon: TrendingUp },
-      { title: "Add Habit", path: "/add-habits", icon: Plus },
-      { title: "Analytics", path: "/analytics", icon: ChartNoAxesCombined },
+      { title: "Dashboard", path: "/dashboard", icon: ChartNoAxesCombined },
     );
   }
 
