@@ -4,13 +4,10 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import {
   User,
-  Settings,
   LogOut,
   TrendingUp,
   ChartNoAxesCombined,
   ChevronDown,
-  Shield,
-  HelpCircle,
 } from "lucide-react";
 
 const ProfileDropDown = (props) => {
@@ -19,41 +16,23 @@ const ProfileDropDown = (props) => {
   const profileRef = useRef();
 
   const navigation = [
-    {
-      title: "My Profile",
-      path: "#",
-      icon: User,
-      description: "View your profile",
-    },
+    // {
+    //   title: "My Profile",
+    //   path: "#",
+    //   icon: User,
+    //   description: "View your profile",
+    // },
     {
       title: "My Habits",
-      path: "/my-habits",
+      path: "/dashboard/my-habits",
       icon: TrendingUp,
       description: "View progress dashboard",
     },
     {
       title: "Progress Analytics",
-      path: "/analytics",
+      path: "/dashboard/analytics",
       icon: ChartNoAxesCombined,
       description: "View progress dashboard",
-    },
-    {
-      title: "Settings",
-      path: "#",
-      icon: Settings,
-      description: "Account settings",
-    },
-    {
-      title: "Help & Support",
-      path: "#",
-      icon: HelpCircle,
-      description: "Get help",
-    },
-    {
-      title: "Privacy",
-      path: "#",
-      icon: Shield,
-      description: "Privacy settings",
     },
   ];
 

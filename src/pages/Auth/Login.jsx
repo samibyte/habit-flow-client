@@ -64,6 +64,21 @@ const Login = () => {
     }
   };
 
+  const demoLogin = async () => {
+    setIsLoading(true);
+    const demoEmail = "demo@gmail.com";
+    const demoPassword = "Asdf12";
+    try {
+      await signInUser(demoEmail, demoPassword);
+      toast.success("Demo login successful");
+      navigate(location.state?.from || "/");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-base-100 flex items-center justify-center p-4 py-8">
       <title>Habit Flow | Login</title>
@@ -148,6 +163,19 @@ const Login = () => {
               </div>
             </div>
 
+            <div className="flex justify-between items-center">
+              <button
+              onClick={() => {demoLogin()}}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              type="button"
+              className="w-1/3 py-3 bg-linear-to-r from-primary to-secondary via-primary hover:via-secondary transition-colors text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden group text-sm"
+            >
+              {/* Shine effect */}
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+
+              Demo Login
+            </button>
             <div className="text-right">
               <Link
                 to="/forgot-password"
@@ -157,6 +185,8 @@ const Login = () => {
                 Forgot your password?
               </Link>
             </div>
+            </div>
+            
 
             {/* Login button */}
             <button
